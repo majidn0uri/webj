@@ -178,6 +178,129 @@ body:has(.shell) { padding-bottom: 0; }
 .login__card { border-radius: 24px; padding: 34px; box-shadow: 0 30px 90px #0003; }
 .login__mark { background: var(--premium-gradient); border-radius: 13px; }
 
+/* =====================================================================
+   لایهٔ پرداختِ بصری — عمق، درخشش و ریتمِ ملایمِ حرکت
+   (فقط ظاهر؛ چیدمان و راست‌چینی دست‌نخورده می‌ماند)
+   ===================================================================== */
+
+/* پس‌زمینهٔ فروشگاه: دو هالهٔ نرم که به صفحه عمق می‌دهند */
+.st {
+  background:
+    radial-gradient(760px 520px at 96% -4%, #efe7ff 0, transparent 42%),
+    radial-gradient(680px 480px at 2% 8%, #ffe9f3 0, transparent 40%),
+    #fdf6fa;
+}
+
+/* قهرمان: گرادیانِ چندلایه، درخششِ لبه و بافتِ ظریف */
+.hero {
+  background:
+    radial-gradient(680px 340px at 90% -12%, #ff9a63aa, transparent 58%),
+    radial-gradient(620px 420px at 6% 116%, #a855f77a, transparent 60%),
+    linear-gradient(118deg, #16142c 0%, #341f66 54%, #7c2f80 100%);
+  box-shadow: 0 30px 72px rgba(32, 16, 64, 0.30);
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(1px 1px at 20% 30%, #ffffff40, transparent),
+    radial-gradient(1px 1px at 70% 60%, #ffffff30, transparent),
+    radial-gradient(1200px 400px at 50% 130%, #ffffff10, transparent 60%);
+  pointer-events: none;
+}
+.hero__grid,
+.hero__stat { position: relative; z-index: 1; }
+
+.hero__kicker { backdrop-filter: blur(6px); }
+.hero__title { text-shadow: 0 2px 24px rgba(0, 0, 0, 0.28); }
+.hero__panel {
+  backdrop-filter: blur(14px);
+  box-shadow: 0 18px 44px rgba(16, 10, 42, 0.28);
+}
+
+/* گردش و شناوریِ ملایمِ صحنهٔ گوشی */
+@keyframes st-pulse { 0%, 100% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.06); opacity: .82; } }
+@keyframes st-phone-float { 0%, 100% { transform: rotate(-9deg) translateY(0); } 50% { transform: rotate(-9deg) translateY(-12px); } }
+@keyframes st-float-a { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+.hero__orbit {
+  background: radial-gradient(circle, #c39cff4d, transparent 66%);
+  animation: st-pulse 7s ease-in-out infinite;
+}
+.hero__orbit::after {
+  content: '';
+  position: absolute;
+  inset: -46px;
+  border-radius: 50%;
+  border: 1px dashed #ffffff1f;
+}
+.hero__phone { animation: st-phone-float 6.5s ease-in-out infinite; }
+.hero__float { animation: st-float-a 5s ease-in-out infinite; backdrop-filter: blur(2px); }
+.hero__float--two { animation-delay: 1.4s; }
+
+/* عنوان بخش: خطِ لهجه‌دارِ گرادیانی زیرِ عنوان */
+.sect__title { position: relative; padding-bottom: 11px; }
+.sect__title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  inset-inline-start: 0;
+  width: 46px;
+  height: 3px;
+  border-radius: 99px;
+  background: var(--premium-gradient);
+}
+
+/* نوارِ اعتماد: آیکنِ گرادیانی و بالاآمدنِ ملایم هنگامِ اشاره */
+.trust__item { transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease; }
+.trust__item:hover {
+  transform: translateY(-3px);
+  border-color: #e7d4f0;
+  box-shadow: 0 16px 34px rgba(53, 32, 90, 0.12);
+}
+.trust__icon {
+  background: linear-gradient(135deg, #fce8f0, #ece2ff);
+  color: var(--premium-purple);
+  box-shadow: 0 6px 16px rgba(120, 80, 204, 0.14);
+}
+
+/* کاشیِ دسته و کارتِ برند: عمقِ بیشتر و اشارهٔ زنده‌تر */
+.category-tile { transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease; }
+.category-tile__icon {
+  background: linear-gradient(135deg, #f3e8fb, #fce8f0);
+  box-shadow: 0 6px 16px rgba(120, 80, 204, 0.12);
+}
+.category-tile:hover { box-shadow: 0 16px 34px rgba(53, 32, 90, 0.14); }
+
+.brandcard {
+  position: relative;
+  overflow: hidden;
+  transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+}
+.brandcard::before {
+  content: '';
+  position: absolute;
+  inset-block-start: 0;
+  inset-inline: 0;
+  height: 3px;
+  background: var(--premium-gradient);
+  opacity: 0;
+  transition: opacity 180ms ease;
+}
+.brandcard:hover {
+  transform: translateY(-3px);
+  border-color: #d5b6e2;
+  box-shadow: 0 16px 34px rgba(53, 32, 90, 0.14);
+}
+.brandcard:hover::before { opacity: 1; }
+
+/* دکمهٔ اصلی: درخششِ گرم‌ترِ برند */
+.btn--primary:hover,
+.btn-p--primary:hover { box-shadow: 0 10px 26px rgba(217, 45, 80, 0.30); }
+
+/* سبدِ خرید در نوارِ بالا: کمی درخشش */
+.iconbtn--cart { box-shadow: 0 6px 16px rgba(217, 45, 80, 0.22); }
+
 @media (max-width: 1100px) {
   .shell { grid-template-columns: 225px minmax(0, 1fr); }
   .shell__main { padding: 24px; }
