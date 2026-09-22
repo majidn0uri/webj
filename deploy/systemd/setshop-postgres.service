@@ -1,0 +1,27 @@
+[Unit]
+Description=ست‌شاپ — PostgreSQL
+After=network.target
+
+[Service]
+Type=forking
+User=setshop
+Group=setshop
+# شاخه‌ی داده بیرون از /srv است تا به‌روزرسانیِ برنامه هرگز به آن دست نزند
+Environment=PGDATA=/var/lib/setshop/pgdata
+Environment=PGPORT=5433
+Environment=PGRUN=/run/setshop
+# اگر رمز تعیین شود، پستگرس روی 127.0.0.1 هم گوش می‌دهد و احرازِ هویتِ
+# رمزی برقرار است؛ در غیر این صورت فقط سوکتِ یونیکس (امن‌تر، ساده‌تر).
+# Environment=PGPASSWORD=رمزِ-قوی-اینجا
+ExecStart=/srv/setshop/scripts/pg-start.sh start
+ExecStop=/srv/setshop/scripts/pg-start.sh stop
+# SIGTERM کافی است: پستگرس قبل از خروج، داده را روی دیسک می‌نويسد (WAL)
+TimeoutStopSec=60
+Restart=on-failure
+RestartSec=5
+
+LimitNOFILE=65536
+OOMScoreAdjust=-500
+
+[Install]
+WantedBy=multi-user.target

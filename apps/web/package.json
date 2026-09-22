@@ -1,0 +1,22 @@
+{
+  "name": "@set/web",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev -H 0.0.0.0 -p 3100",
+    "build": "next build",
+    "start": "next start -H 0.0.0.0 -p ${PORT:-3100}"
+  },
+  "dependencies": {
+    "next": "15.5.25",
+    "react": "19.0.0",
+    "react-dom": "19.0.0",
+    "@set/shared-kernel": "*"
+  },
+  "devDependencies": {
+    "@types/react": "19.0.0",
+    "@types/react-dom": "19.0.0",
+    "@types/node": "22.10.2",
+    "typescript": "5.7.2"
+  }
+}

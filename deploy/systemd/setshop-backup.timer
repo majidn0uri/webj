@@ -1,0 +1,11 @@
+[Unit]
+Description=پشتیبان‌گیریِ شبانه از پایگاه‌داده‌ی ست‌شاپ
+
+[Timer]
+# هر شب ساعتِ ۳:۱۵ به وقتِ تهران — کم‌ترین ترافیکِ فروشگاه
+OnCalendar=*-*-* 03:15:00
+Persistent=true
+RandomizedDelaySec=300
+
+[Install]
+WantedBy=timers.target

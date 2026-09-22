@@ -1,0 +1,78 @@
+[
+  {
+    "requests": 974,
+    "errors": 0,
+    "throttled": 0,
+    "hardErrors": 0,
+    "errorRate": 0,
+    "totalErrorRate": 0,
+    "byStatus": {},
+    "byStep": [
+      {
+        "step": "خریدِ کامل (سبد ← تسویه ← پرداخت ← تأییدِ درگاه)",
+        "count": 622,
+        "avgMs": 10.393370096463018,
+        "errors": 0,
+        "cached": 0
+      },
+      {
+        "step": "فهرستِ کالا (API)",
+        "count": 237,
+        "avgMs": 3.1885097721519005,
+        "errors": 0,
+        "cached": 0
+      },
+      {
+        "step": "جستجو (API)",
+        "count": 115,
+        "avgMs": 1.5785547999999996,
+        "errors": 0,
+        "cached": 0
+      }
+    ],
+    "p50": 8.7456815,
+    "p95": 13.2729316,
+    "p99": 17.73546866,
+    "max": 54.307848,
+    "bytes": 767926,
+    "users": 25,
+    "seconds": 20.637,
+    "rps": 47.19678247807336,
+    "inFlightAvg": 0.5191489361702127,
+    "inFlightPeak": 25,
+    "timeline": [
+      51,
+      49,
+      48,
+      47,
+      51,
+      47,
+      50,
+      51,
+      45,
+      48,
+      50,
+      45,
+      52,
+      47,
+      50,
+      48,
+      47,
+      50,
+      52,
+      46
+    ],
+    "loadAvg": 0.587872340425532,
+    "aborted": "",
+    "cores": 2,
+    "tally": {
+      "created": 21,
+      "paid": 19,
+      "cancelled": 2,
+      "soldOut": 688,
+      "startFailed": 0,
+      "verifyFailed": 0,
+      "turns": 22
+    }
+  }
+]

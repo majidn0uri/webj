@@ -1,0 +1,40 @@
+[Unit]
+Description=ست‌شاپ — تعهد‌هایِ پس از فروش: صورتحسابِ جامانده، پیامک‌هایِ صف‌شده، آغازِ گارانتی
+Documentation=file:/srv/setshop/deploy/README.md
+After=network.target setshop-postgres.service
+Requires=setshop-postgres.service
+
+[Service]
+Type=oneshot
+User=setshop
+Group=setshop
+WorkingDirectory=/srv/setshop
+EnvironmentFile=/etc/setshop/env
+Environment=NODE_ENV=production
+
+# چرا این کار در لحظه‌یِ پرداخت انجام نمی‌شود؟
+#   چون پرداختِ مشتری نباید به سامانه‌یِ مؤدیان، به ثبت بودنِ شناسه‌یِ کالا یا
+#   به درستیِ تنظیمات گره بخورد: اگر یکی از این‌ها ایراد داشت، فروش انجام شده
+#   و صورتحساب بعداً — با پیامی روشن در پنل — ساخته می‌شود.
+# چرا یک کارگرِ جدا و نه بخشی از کارگرِ مالیات؟
+#   چون این دو وظیفه دو «شکستِ» متفاوت دارند: صورتحساب ممکن است به‌خاطرِ
+#   قطعیِ اینترنت نرسد، اما گارانتی اصلاً به اینترنت ربطی ندارد و نباید منتظر
+#   بماند. جدا بودن یعنی خرابیِ یکی، دیگری را عقب نمی‌اندازد.
+ExecStart=/usr/bin/env npx tsx scripts/post-sale-worker.ts
+
+# هر دو وظیفه «بی‌اثر در تکرار»اند: اجرایِ دوباره هیچ صورتحسابِ تکراری و هیچ
+# گارانتیِ دوباره‌آغازشده‌ای نمی‌سازد. پس تلاشِ دوباره امن است.
+Restart=on-failure
+RestartSec=180
+
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=setshop-postsale
+
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/var/log/setshop
+ProtectKernelTunables=true
+ProtectControlGroups=true

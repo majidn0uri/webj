@@ -1,0 +1,19 @@
+{
+  "name": "@set/db",
+  "version": "0.1.0",
+  "type": "module",
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "migrate": "tsx src/migrate-cli.ts"
+  },
+  "dependencies": {
+    "@electric-sql/pglite": "^0.5.8"
+  },
+  "devDependencies": {
+    "@set/shared-kernel": "*"
+  }
+}

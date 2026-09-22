@@ -1,0 +1,49 @@
+{
+  "name": "set-shop",
+  "version": "0.1.0",
+  "private": true,
+  "engines": {
+    "node": ">=20.11"
+  },
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "test": "vitest run",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "dev:api": "TSX_TSCONFIG_PATH=./tsconfig.json tsx watch apps/api/src/main.ts",
+    "start:api": "NODE_OPTIONS=--max-old-space-size=768 TSX_TSCONFIG_PATH=./tsconfig.json tsx apps/api/src/main.ts",
+    "migrate": "tsx packages/db/src/migrate-cli.ts",
+    "worker:once": "TSX_TSCONFIG_PATH=./tsconfig.json tsx scripts/post-sale-worker.ts",
+    "start:worker": "TSX_TSCONFIG_PATH=./tsconfig.json tsx scripts/post-sale-worker.ts --loop",
+    "start:web": "npm --workspace @set/web run start",
+    "db:reset": "rm -rf .data && echo \"شاخه‌ی داده پاک شد؛ اجرایِ بعدی پایگاه را از نو می‌سازد\"",
+    "build:web": "npm --workspace @set/web run build",
+    "dev:web": "npm --workspace @set/web run dev",
+    "web": "npm run build:web && npm run start:web",
+    "db:pg:start": "./scripts/pg-start.sh",
+    "db:pg:stop": "./scripts/pg-start.sh stop",
+    "start:pg": "./scripts/pg-start.sh && DB_URL=\"postgres://setshop@/setshop?host=$HOME/var/pgrun&port=5433\" npm run start:api",
+    "admin:create": "TSX_TSCONFIG_PATH=./tsconfig.json tsx scripts/create-admin.ts",
+    "check": "node scripts/check-code.mjs",
+    "typecheck:web": "tsc -p apps/web --noEmit",
+    "typecheck:scripts": "tsc -p tsconfig.scripts.json",
+    "verify": "npm run typecheck && npm run typecheck:web && npm run typecheck:scripts && npm run check",
+    "seed:showcase": "TSX_TSCONFIG_PATH=./tsconfig.json tsx scripts/seed-showcase.ts",
+    "template": "node scripts/render-qalib.mjs",
+    "template:check": "node scripts/render-qalib.mjs --check"
+  },
+  "devDependencies": {
+    "puppeteer-core": "^24.43.1",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.3",
+    "vitest": "^2.1.8"
+  },
+  "dependencies": {
+    "@types/pg": "^8.23.1",
+    "bidi-js": "^1.1.0",
+    "fontkit": "^2.0.4",
+    "pg": "^8.23.0"
+  }
+}

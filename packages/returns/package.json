@@ -1,0 +1,18 @@
+{
+  "name": "@set/returns",
+  "version": "0.1.0",
+  "type": "module",
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "dependencies": {
+    "@set/shared-kernel": "*",
+    "@set/db": "*",
+    "@set/accounting": "*",
+    "@set/commerce": "*",
+    "@set/inventory": "*",
+    "@set/tax": "*"
+  }
+}

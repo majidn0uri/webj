@@ -1,0 +1,81 @@
+{
+  "rounds": 150,
+  "endpoints": {
+    "categories": {
+      "requests": 150,
+      "errors": 2,
+      "firstError": "429",
+      "wallMs": {
+        "avg": 2.08,
+        "p50": 2,
+        "p95": 3,
+        "max": 31
+      },
+      "serviceMs": {
+        "avg": 0.01,
+        "p50": 0,
+        "p95": 0,
+        "max": 1
+      },
+      "fromCache": 148,
+      "cacheRate": 98.7
+    },
+    "brands": {
+      "requests": 150,
+      "errors": 2,
+      "firstError": "429",
+      "wallMs": {
+        "avg": 2.43,
+        "p50": 2,
+        "p95": 4,
+        "max": 30
+      },
+      "serviceMs": {
+        "avg": 0.05,
+        "p50": 0,
+        "p95": 0,
+        "max": 1
+      },
+      "fromCache": 148,
+      "cacheRate": 98.7
+    },
+    "devices": {
+      "requests": 150,
+      "errors": 2,
+      "firstError": "429",
+      "wallMs": {
+        "avg": 2.85,
+        "p50": 2,
+        "p95": 5,
+        "max": 30
+      },
+      "serviceMs": {
+        "avg": 0.02,
+        "p50": 0,
+        "p95": 0,
+        "max": 1
+      },
+      "fromCache": 148,
+      "cacheRate": 98.7
+    },
+    "colours": {
+      "requests": 150,
+      "errors": 2,
+      "firstError": "429",
+      "wallMs": {
+        "avg": 3.1,
+        "p50": 3,
+        "p95": 5,
+        "max": 30
+      },
+      "serviceMs": {
+        "avg": 0.01,
+        "p50": 0,
+        "p95": 0,
+        "max": 1
+      },
+      "fromCache": 148,
+      "cacheRate": 98.7
+    }
+  }
+}

@@ -1,0 +1,162 @@
+[
+  {
+    "path": "/",
+    "size": "رومیزی",
+    "width": 1280,
+    "status": 200,
+    "loadMs": 2609,
+    "errors": [],
+    "title": "ست‌شاپ — لوازم جانبی موبایل با تضمینِ سازگاری",
+    "counts": {
+      "images": 16,
+      "headings": 6,
+      "sections": 7,
+      "buttons": 17
+    },
+    "findings": []
+  },
+  {
+    "path": "/",
+    "size": "موبایل",
+    "width": 390,
+    "status": 200,
+    "loadMs": 1639,
+    "errors": [],
+    "title": "ست‌شاپ — لوازم جانبی موبایل با تضمینِ سازگاری",
+    "counts": {
+      "images": 16,
+      "headings": 6,
+      "sections": 7,
+      "buttons": 17
+    },
+    "findings": []
+  },
+  {
+    "path": "/search?q=%D9%82%D8%A7%D8%A8",
+    "size": "رومیزی",
+    "width": 1280,
+    "status": 200,
+    "loadMs": 1629,
+    "errors": [],
+    "title": "ست‌شاپ — لوازم جانبی موبایل با تضمینِ سازگاری",
+    "counts": {
+      "images": 1,
+      "headings": 1,
+      "sections": 0,
+      "buttons": 8
+    },
+    "findings": []
+  },
+  {
+    "path": "/search?q=%D9%82%D8%A7%D8%A8",
+    "size": "موبایل",
+    "width": 390,
+    "status": 200,
+    "loadMs": 1633,
+    "errors": [],
+    "title": "ست‌شاپ — لوازم جانبی موبایل با تضمینِ سازگاری",
+    "counts": {
+      "images": 1,
+      "headings": 1,
+      "sections": 0,
+      "buttons": 8
+    },
+    "findings": []
+  },
+  {
+    "path": "/products/powerbank-20000",
+    "size": "رومیزی",
+    "width": 1280,
+    "status": 200,
+    "loadMs": 1638,
+    "errors": [],
+    "title": "ست‌شاپ — لوازم جانبی موبایل با تضمینِ سازگاری",
+    "counts": {
+      "images": 1,
+      "headings": 3,
+      "sections": 2,
+      "buttons": 4
+    },
+    "findings": []
+  },
+  {
+    "path": "/products/powerbank-20000",
+    "size": "موبایل",
+    "width": 390,
+    "status": 200,
+    "loadMs": 1633,
+    "errors": [],
+    "title": "ست‌شاپ — لوازم جانبی موبایل با تضمینِ سازگاری",
+    "counts": {
+      "images": 1,
+      "headings": 3,
+      "sections": 2,
+      "buttons": 4
+    },
+    "findings": []
+  },
+  {
+    "path": "/cart",
+    "size": "رومیزی",
+    "width": 1280,
+    "status": 200,
+    "loadMs": 1626,
+    "errors": [],
+    "title": "ست‌شاپ — لوازم جانبی موبایل با تضمینِ سازگاری",
+    "counts": {
+      "images": 0,
+      "headings": 1,
+      "sections": 0,
+      "buttons": 1
+    },
+    "findings": []
+  },
+  {
+    "path": "/cart",
+    "size": "موبایل",
+    "width": 390,
+    "status": 200,
+    "loadMs": 1632,
+    "errors": [],
+    "title": "ست‌شاپ — لوازم جانبی موبایل با تضمینِ سازگاری",
+    "counts": {
+      "images": 0,
+      "headings": 1,
+      "sections": 0,
+      "buttons": 1
+    },
+    "findings": []
+  },
+  {
+    "path": "/device/528e6e56-f402-4ce4-9f0f-c6f1c0fa5472",
+    "size": "رومیزی",
+    "width": 1280,
+    "status": 200,
+    "loadMs": 1636,
+    "errors": [],
+    "title": "ست‌شاپ — لوازم جانبی موبایل با تضمینِ سازگاری",
+    "counts": {
+      "images": 6,
+      "headings": 2,
+      "sections": 1,
+      "buttons": 1
+    },
+    "findings": []
+  },
+  {
+    "path": "/device/528e6e56-f402-4ce4-9f0f-c6f1c0fa5472",
+    "size": "موبایل",
+    "width": 390,
+    "status": 200,
+    "loadMs": 1628,
+    "errors": [],
+    "title": "ست‌شاپ — لوازم جانبی موبایل با تضمینِ سازگاری",
+    "counts": {
+      "images": 6,
+      "headings": 2,
+      "sections": 1,
+      "buttons": 1
+    },
+    "findings": []
+  }
+]

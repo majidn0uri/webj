@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>فلوچارت جریان کار فروشگاه</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Tahoma,'Segoe UI',Arial,sans-serif;background:#edf2f8;color:#2b2b2b;padding:26px 14px;line-height:1.9}
+.wrap{max-width:980px;margin:0 auto}
+h1{text-align:center;color:#1F4E79;font-size:25px;margin-bottom:4px}
+.sub{text-align:center;color:#6e6e6e;font-size:12.5px;margin-bottom:18px}
+.legend{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:6px}
+.chip{font-size:11px;padding:3px 12px;border-radius:20px;color:#fff;font-weight:bold}
+.sec{background:#1F4E79;color:#fff;padding:9px 16px;border-radius:10px;font-size:15px;font-weight:bold;margin:36px 0 16px}
+.box{background:#fff;border:1px solid #d6e0ec;border-radius:12px;padding:13px 16px;box-shadow:0 1px 3px rgba(31,78,121,.10)}
+.phase{border-right:5px solid var(--c)}
+.phase h3{font-size:14.5px;color:#173d5e;margin-bottom:2px}
+.role{display:inline-block;font-size:10.5px;color:#fff;background:var(--c);border-radius:12px;padding:1px 10px;margin-right:6px;vertical-align:middle;font-weight:bold}
+.desc{font-size:12.5px;color:#41546b}
+.varrow{text-align:center;color:#8aa8c4;font-size:18px;margin:7px 0;font-weight:bold}
+.branches{display:flex;gap:16px;flex-wrap:wrap;align-items:stretch}
+.branch{flex:1;min-width:300px;background:#fff;border:1px solid #d6e0ec;border-radius:12px;overflow:hidden;box-shadow:0 1px 3px rgba(31,78,121,.10)}
+.bhead{color:#fff;font-weight:bold;font-size:13.5px;padding:8px 14px}
+.bbody{padding:12px 14px}
+.mstep{background:#f4f8fc;border:1px solid #e0e9f2;border-radius:9px;padding:7px 10px;font-size:12px;margin-bottom:4px}
+.mstep b{color:#173d5e}
+.marrow{text-align:center;color:#9db6ce;font-size:13px;margin:2px 0 6px}
+.end{background:#1E7A46;color:#fff;text-align:center;font-weight:bold;font-size:15px;border-radius:12px;padding:14px}
+.grid3{display:flex;gap:16px;flex-wrap:wrap}
+.pcard{flex:1;min-width:280px}
+.pcard h4{color:#fff;border-radius:8px;padding:6px 12px;font-size:13px;margin-bottom:8px}
+.pcard ul{list-style:none;padding:0 4px;background:#fff;border:1px solid #d6e0ec;border-radius:10px;box-shadow:0 1px 3px rgba(31,78,121,.10)}
+.pcard li{font-size:12px;padding:5px 10px;border-bottom:1px dashed #dfe7f0}
+.pcard li:last-child{border-bottom:none}
+.hflow{display:flex;flex-wrap:wrap;gap:6px;align-items:center;justify-content:center}
+.st{background:#fff;border:1.5px solid #c6d6e6;border-radius:9px;padding:5px 12px;font-size:12px;font-weight:bold;color:#173d5e;text-align:center}
+.st small{display:block;font-weight:normal;color:#6e7f93;font-size:10.5px}
+.sep{color:#8aa8c4;font-weight:bold;font-size:15px}
+.st.green{border-color:#79b892;color:#1E7A46}
+.st.red{border-color:#d8a0a0;color:#a33333}
+.st.orange{border-color:#e0b269;color:#8a5a00}
+.st.purple{border-color:#b695d6;color:#7C3AAD}
+.cust{flex:1;min-width:280px}
+.cust h4{font-size:14px;color:#173d5e;border-bottom:2px solid var(--c);padding-bottom:5px;margin-bottom:8px}
+.row{display:flex;font-size:12px;padding:3px 0}
+.row .k{width:112px;color:#6e7f93;flex-shrink:0;font-weight:bold}
+.row .v{color:#2b2b2b}
+.notebox{background:#FDF3E3;border:1px solid #ecd9b0;border-radius:10px;padding:10px 14px;font-size:12px;color:#6b4b12;margin-top:14px}
+.foot{text-align:center;color:#8b9aa9;font-size:11px;margin-top:30px}
+@media print{body{background:#fff;padding:10px}.box,.branch,.pcard ul{box-shadow:none}.sec{margin-top:20px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<h1>فلوچارت جریان کار فروشگاه</h1>
+<div class="sub">نسخه ۳٫۰ — هماهنگ با سند «جریان کار کامل فروشگاه» | شهریور ۱۴۰۵</div>
+
+<div class="legend">
+  <span class="chip" style="background:#7C3AAD">مدیر</span>
+  <span class="chip" style="background:#1F4E79">حسابدار</span>
+  <span class="chip" style="background:#1E7A46">انباردار</span>
+  <span class="chip" style="background:#B35C00">اپراتور آنلاین</span>
+  <span class="chip" style="background:#0E7490">مشتری / سایت</span>
+</div>
+
+<!-- ================= ۱) جریان اصلی ================= -->
+<div class="sec">۱) جریان اصلی — از خرید تا تحویل</div>
+
+<div class="box phase" style="--c:#7C3AAD">
+  <h3>فاز ۰ — راه‌اندازی اولیه <span class="role">مدیر</span></h3>
+  <div class="desc">تعریف نقش‌ها و تیک دسترسی‌ها • پنل مدیریت کاربران • اطلاعات پایه (دسته‌بندی‌ها، بانک برند و مدل گوشی‌ها، تعرفه ارسال، روش‌های پرداخت) • شماره‌گذاری اسناد</div>
+</div>
+<div class="varrow">▼</div>
+
+<div class="box phase" style="--c:#1F4E79">
+  <h3>فاز ۳ — خرید اقلام <span class="role">حسابدار</span></h3>
+  <div class="desc">تعیین نیاز (هشدار نقطه سفارش) ← فاکتور خرید (KH) ← ثبت پرداخت: نقد / کارت / اعتباری (بدهی + سررسید) / چک</div>
+</div>
+<div class="varrow">▼</div>
+
+<div class="box phase" style="--c:#1E7A46">
+  <h3>فاز ۴ — ورود و ثبت کالا <span class="role">انباردار / حسابدار</span></h3>
+  <div class="desc">تطبیق با فاکتور خرید + ثبت مغایرت ← ثبت مشخصات: عکس‌ها، جدول مشخصات فنی، سازگاری با گوشی‌ها، قیمت خرید / فروش / همکاری، تخفیف (با تاریخ شروع و پایان)، <b>رنگ‌ها با موجودی جداگانه</b> ← برچسب‌گذاری ← تأیید ورود</div>
+</div>
+<div class="varrow">▼</div>
+
+<div class="branches">
+  <div class="branch">
+    <div class="bhead" style="background:#1F4E79">فروش حضوری — فاز ۶</div>
+    <div class="bbody">
+      <div class="mstep"><b>۱. شناسایی مشتری</b> — کد ملی / موبایل ← اکانت جدید (خودکار) یا همان اکانت قبلی</div>
+      <div class="marrow">▼</div>
+      <div class="mstep"><b>۲. قیمت خودکار</b> — عادی: قیمت فروش | همکار: قیمت همکاری</div>
+      <div class="marrow">▼</div>
+      <div class="mstep"><b>۳. صدور فاکتور (FS)</b> — اقلام + رنگ + تخفیف تا سقف مجاز</div>
+      <div class="marrow">▼</div>
+      <div class="mstep"><b>۴. دریافت وجه</b> — عادی: نقد / کارت‌خوان | همکار: نقد / کارت / آنلاین / <b>چک</b></div>
+      <div class="marrow">▼</div>
+      <div class="mstep"><b>۵. تحویل فوری کالا</b> — کسر موجودی در لحظه صدور فاکتور</div>
+    </div>
+  </div>
+  <div class="branch">
+    <div class="bhead" style="background:#0E7490">فروش آنلاین — فازهای ۲ و ۷ (سایت)</div>
+    <div class="bbody">
+      <div class="mstep"><b>۱. ورود / ثبت‌نام</b> — موبایل + کد ملی + تأیید پیامکی</div>
+      <div class="marrow">▼</div>
+      <div class="mstep"><b>۲. گشت‌وگذار</b> — صفحه اول (تخفیف‌ها + ترندها)، دسته‌بندی، فیلتر، جستجو</div>
+      <div class="marrow">▼</div>
+      <div class="mstep"><b>۳. صفحه کالا</b> — عکس‌ها، جدول فنی، سازگاری با گوشی، انتخاب رنگ + تعداد</div>
+      <div class="marrow">▼</div>
+      <div class="mstep"><b>۴. سبد ← تکمیل خرید</b> — آدرس + روش ارسال + هزینه ارسال + پرداخت</div>
+      <div class="marrow">▼</div>
+      <div class="mstep"><b>۵. پرداخت</b> — عادی: فقط درگاه | همکار: درگاه یا <b>چک</b></div>
+      <div class="marrow">▼</div>
+      <div class="mstep"><b>۶. تأیید فروشگاه</b> — کنترل نهایی موجودی ← پیامک «سفارش تأیید شد»</div>
+    </div>
+  </div>
+</div>
+<div class="varrow">▼</div>
+
+<div class="box phase" style="--c:#1E7A46">
+  <h3>فاز ۸ — بسته‌بندی و ارسال <span class="role">انباردار / اپراتور ارسال</span></h3>
+  <div class="desc">پکینگ‌لیست و برچسب آدرس ← جمع‌آوری + کنترل نهایی (رنگ و تعداد) ← بسته‌بندی ایمن ← تحویل به شرکت حمل + ثبت کد رهگیری (MS) ← اطلاع کد رهگیری به مشتری ← پیگیری تا تحویل</div>
+</div>
+<div class="varrow">▼</div>
+
+<div class="end">✓ تحویل به مشتری — پایان چرخه فروش</div>
+
+<div class="notebox">⚠ بعد از تحویل، «مرجوعی» و «لغو» ممکن است (بخش ۵) — و از لحظه ورود کالا به انبار، «فرآیندهای همزمان» (بخش ۲) همیشه فعال‌اند.</div>
+
+<!-- ================= ۲) فرآیندهای همزمان ================= -->
+<div class="sec">۲) فرآیندهای همزمان — همیشه در حال اجرا</div>
+<div class="grid3">
+  <div class="pcard">
+    <h4 style="background:#1E7A46">انبار (انباردار)</h4>
+    <ul>
+      <li>موجودی در سطح <b>رنگ</b> — فروش منفی ممنوع</li>
+      <li>هشدار اتمام موجودی (نقطه سفارش)</li>
+      <li>ثبت ضایعات و معیوبی با دلیل</li>
+      <li>انبارگردانی دوره‌ای + تعدیل با دلیل</li>
+    </ul>
+  </div>
+  <div class="pcard">
+    <h4 style="background:#1F4E79">مالی، صندوق و چک (حسابدار)</h4>
+    <ul>
+      <li>ثبت روزانه: نقد، کارت‌خوان، کارت به کارت، درگاه</li>
+      <li>بستن صندوق پایان روز + تطبیق</li>
+      <li>چرخه چک‌های همکاران (بخش ۶)</li>
+      <li>تسویه فروشندگان • سود و زیان دوره‌ای</li>
+    </ul>
+  </div>
+  <div class="pcard">
+    <h4 style="background:#7C3AAD">گزارش‌گیری و لاگ (مدیر / حسابدار)</h4>
+    <ul>
+      <li>فروش تفکیک: حضوری / آنلاین / همکار</li>
+      <li>سود هر کالا • موجودی و ارزش انبار</li>
+      <li>پرفروش‌ها (مبنای «ترند») و بی‌حرکت‌ها</li>
+      <li>لاگ فعالیت کاربران: چه کسی، چه چیزی، کِی</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ================= ۳) سه نوع مشتری ================= -->
+<div class="sec">۳) سه نوع مشتری — قواعد اکانت، قیمت و پرداخت</div>
+<div class="grid3">
+  <div class="box cust" style="--c:#1F4E79">
+    <h4>مشتری حضوری</h4>
+    <div class="row"><span class="k">ساخت اکانت</span><span class="v">خودکار هنگام خرید، با کد ملی + شماره تماس</span></div>
+    <div class="row"><span class="k">قیمت‌ها</span><span class="v">قیمت فروش (خرده‌فروشی)</span></div>
+    <div class="row"><span class="k">پرداخت حضوری</span><span class="v">پول نقد یا کارت‌خوان</span></div>
+    <div class="row"><span class="k">پرداخت آنلاین</span><span class="v">فقط درگاه آنلاین</span></div>
+  </div>
+  <div class="box cust" style="--c:#0E7490">
+    <h4>مشتری آنلاین</h4>
+    <div class="row"><span class="k">ساخت اکانت</span><span class="v">ثبت‌نام خودشان در سایت + تأیید پیامکی</span></div>
+    <div class="row"><span class="k">قیمت‌ها</span><span class="v">قیمت فروش (خرده‌فروشی)</span></div>
+    <div class="row"><span class="k">پرداخت حضوری</span><span class="v">—</span></div>
+    <div class="row"><span class="k">پرداخت آنلاین</span><span class="v">فقط درگاه آنلاین</span></div>
+  </div>
+  <div class="box cust" style="--c:#B35C00">
+    <h4>همکار (عمده‌خر)</h4>
+    <div class="row"><span class="k">ساخت اکانت</span><span class="v">ثبت‌نام خودش یا ثبت توسط حسابدار + <b>تیک «همکار» فقط توسط مدیر</b></span></div>
+    <div class="row"><span class="k">قیمت‌ها</span><span class="v">قیمت همکاری — حضوری و آنلاین</span></div>
+    <div class="row"><span class="k">پرداخت حضوری</span><span class="v">نقد، کارت، پرداخت آنلاین یا <b>چک</b></span></div>
+    <div class="row"><span class="k">پرداخت آنلاین</span><span class="v">درگاه آنلاین یا <b>چک</b></span></div>
+  </div>
+</div>
+<div class="notebox">🔑 کلید یکتای مشتری: <b>کد ملی</b> — شناسه ورود: <b>شماره موبایل</b> — یک اکانت برای هر دو کانال (حضوری + آنلاین) — ساخت اکانت تکراری ممنوع</div>
+
+<!-- ================= ۴) مسیر مشتری در سایت ================= -->
+<div class="sec">۴) مسیر مشتری در سایت</div>
+<div class="hflow">
+  <span class="st">صفحه اول<small>کالاهای تخفیف‌دار + ترندها</small></span>
+  <span class="sep">←</span>
+  <span class="st">دسته‌بندی / جستجو / فیلتر<small>برند، قیمت، رنگ، سازگاری با گوشی، فقط موجودها</small></span>
+  <span class="sep">←</span>
+  <span class="st">صفحه کالا<small>عکس‌ها + جدول فنی + سازگاری + رنگ و تعداد</small></span>
+  <span class="sep">←</span>
+  <span class="st">سبد خرید<small>ویرایش تعداد و حذف</small></span>
+  <span class="sep">←</span>
+  <span class="st">تکمیل خرید<small>آدرس + ارسال و هزینه + پرداخت</small></span>
+  <span class="sep">←</span>
+  <span class="st green">ثبت سفارش + پرداخت<small>کد سفارش + پیامک</small></span>
+  <span class="sep">←</span>
+  <span class="st purple">پنل مشتری<small>سفارش‌های من + کد رهگیری + آدرس‌ها</small></span>
+</div>
+<div class="notebox">👁 مرور سایت آزاد است (بدون ورود) اما ثبت سفارش فقط پس از ورود به اکانت — قیمت‌های نمایش‌داده‌شده بر اساس نوع اکانت: مهمان و عادی ← قیمت فروش | همکار ← قیمت همکاری</div>
+
+<!-- ================= ۵) وضعیت‌های سفارش آنلاین ================= -->
+<div class="sec">۵) وضعیت‌های سفارش آنلاین</div>
+<div class="hflow">
+  <span class="st">ثبت‌شده<small>در انتظار پرداخت</small></span>
+  <span class="sep">←</span>
+  <span class="st">پرداخت‌شده<small>درگاه تأیید شد یا چک همکار ثبت شد</small></span>
+  <span class="sep">←</span>
+  <span class="st">تأییدشده<small>کنترل موجودی انجام شد</small></span>
+  <span class="sep">←</span>
+  <span class="st">در حال بسته‌بندی</span>
+  <span class="sep">←</span>
+  <span class="st">ارسال‌شده<small>کد رهگیری اعلام شد</small></span>
+  <span class="sep">←</span>
+  <span class="st green">تحویل‌شده ✓<small>پایان سفارش</small></span>
+</div>
+<div class="hflow" style="margin-top:10px">
+  <span class="st red">لغوشده</span>
+  <span style="font-size:11.5px;color:#6e7f93">قبل از ارسال — برگشت وجه / ابطال چک + بازگشت موجودی</span>
+  <span style="width:18px"></span>
+  <span class="st orange">مرجوع‌شده</span>
+  <span style="font-size:11.5px;color:#6e7f93">بعد از تحویل — بررسی ← انبار / ضایعات ← استرداد وجه یا اعتبار</span>
+</div>
+
+<!-- ================= ۶) چرخه چک ================= -->
+<div class="sec">۶) چرخه چک دریافتی — فقط همکاران</div>
+<div class="hflow">
+  <span class="st">ثبت چک<small>مبلغ، بانک، شماره، صیاد، سررسید، تصویر</small></span>
+  <span class="sep">←</span>
+  <span class="st">در جریان<small>یادآوری قبل از سررسید</small></span>
+  <span class="sep">←</span>
+  <span class="st">سپرده به بانک</span>
+  <span class="sep">←</span>
+  <span class="st green">وصول‌شده ✓<small>بستن طلب</small></span>
+</div>
+<div class="hflow" style="margin-top:10px">
+  <span class="st orange">خرج‌شده</span>
+  <span style="font-size:11.5px;color:#6e7f93">واگذاری به فروشنده / طلبکار — تهاتر با بدهی</span>
+  <span style="width:18px"></span>
+  <span class="st red">برگشتی</span>
+  <span style="font-size:11.5px;color:#6e7f93">تماس با مشتری، چک / تعهد جدید، پیگیری قانونی</span>
+</div>
+<div class="notebox">⚠ چک تا لحظه وصول «طلب از مشتری» است، نه پول نقد — گزارش سررسیدها و چک‌های باز باید همیشه در دسترس حسابدار باشد.</div>
+
+<div class="foot">این فلوچارت خلاصه بصری سند Word «جریان کار کامل فروشگاه — نسخه ۳» است؛ جزئیات کامل فازها در آن سند و فهرست فیلدهای فرم‌ها در سند «مشخصات فرم‌ها و فیلدها» آمده است.</div>
+
+</div>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a3bde7497bbff00c',t:'MTc4OTU0MTA3NQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v31edd6df95cf4e85bb4c19e7a9bdbcba1788362987495" integrity="sha512-iIg7k2xntmwu6/uSb5tpc/hySgZc4eoL31yB29W6tJFo2akwjPWcEqnCEdJvGexCL0KEQwVYv5BlowfhVz26hg==" data-cf-beacon='{"version":"2024.11.0","token":"1954b47c125f43f8b4338b3c4f804e4f","spa":2}' crossorigin="anonymous"></script>
+</body>
+</html>

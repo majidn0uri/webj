@@ -1,0 +1,17 @@
+{
+  "name": "@set/exports",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "dependencies": {
+    "@set/shared-kernel": "*",
+    "bidi-js": "1.1.0",
+    "exceljs": "4.4.0",
+    "fontkit": "2.0.4"
+  }
+}

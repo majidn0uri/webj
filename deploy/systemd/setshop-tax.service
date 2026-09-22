@@ -1,0 +1,36 @@
+[Unit]
+Description=ست‌شاپ — یک دور ارسال و استعلامِ صورتحسابِ الکترونیکی (سامانه‌یِ مؤدیان)
+Documentation=file:/srv/setshop/deploy/README.md
+After=network.target setshop-postgres.service
+Requires=setshop-postgres.service
+
+[Service]
+Type=oneshot
+User=setshop
+Group=setshop
+WorkingDirectory=/srv/setshop
+EnvironmentFile=/etc/setshop/env
+Environment=NODE_ENV=production
+
+# چرا oneshot و نه یک سرویسِ همیشه‌روشن؟ چون کار، کوتاه و تکرارپذیر است:
+# ردیف‌هایِ گیرکرده را آزاد کن، دسته‌ای بفرست، وضعیت را بپرس، تمام. نگه‌داشتنِ
+# یک فرآیندِ بیکار برایِ چنین کاری یعنی مصرفِ حافظه و پیچیدگیِ بی‌دلیل.
+ExecStart=/usr/bin/env npx tsx scripts/tax-worker.ts
+
+# اگر ارسال به‌خاطرِ خطایِ شبکه شکست بخورد، systemd دوباره تلاش می‌کند؛
+# اما صف در پایگاه می‌ماند و دورِ بعدِ زمان‌سنج آن را برمی‌دارد — یعنی
+# هیچ صورتحسابی به‌خاطرِ یک قطعی گم نمی‌شود.
+Restart=on-failure
+RestartSec=120
+
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=setshop-tax
+
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/var/log/setshop
+ProtectKernelTunables=true
+ProtectControlGroups=true

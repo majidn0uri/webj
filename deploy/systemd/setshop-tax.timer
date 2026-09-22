@@ -1,0 +1,18 @@
+[Unit]
+Description=هر ۱۵ دقیقه: ارسال و استعلامِ صورتحساب‌هایِ مالیاتی
+Documentation=file:/srv/setshop/deploy/README.md
+
+[Timer]
+# پنج دقیقه پس از بالا آمدن (تا پایگاه و شبکه آماده باشند)، سپس هر ۱۵ دقیقه
+OnBootSec=5min
+OnUnitActiveSec=15min
+# پراکندگیِ تصادفی: اگر چند سرور همزمان بالا بیایند، همگی در یک لحظه به
+# سامانه‌یِ مؤدیان فشار نمی‌آورند
+RandomizedDelaySec=90
+# اگر ماشین هنگامِ موعد خاموش بود، نخستین فرصت جبران می‌شود (عقب‌ماندگیِ
+# صورتحساب یعنی ریسکِ جریمه)
+Persistent=true
+Unit=setshop-tax.service
+
+[Install]
+WantedBy=timers.target

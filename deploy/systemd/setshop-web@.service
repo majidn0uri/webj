@@ -1,0 +1,47 @@
+[Unit]
+# «۵ تلاش در هر ۵ دقیقه»: خرابیِ گذرا دوباره بالا می‌آید، اما چرخه‌یِ
+# بی‌پایانِ «بالا آمدن و افتادن» متوقف می‌شود. این دو کلید باید در همین
+# بخش باشند؛ در [Service] نادیده گرفته می‌شوند (systemd-analyze verify).
+StartLimitBurst=5
+StartLimitIntervalSec=300
+Description=ست‌شاپ — وب‌سایت و پنل (Next.js) رویِ پورت %i
+After=network.target setshop-api.service
+Requires=setshop-api.service
+
+[Service]
+# ─────────────────────────────────────────────────────────────────────────────
+# چرا یک «قالب» (%i) و نه یک سرویسِ ساده؟
+#
+# چون Node تک‌رشته‌ای است: یک فرآیندِ نکست، هر چند هسته که دستگاه داشته باشد،
+# بیش از یک هسته را صرفِ رندر نمی‌کند. اندازه‌گیری همین را گفت — با یک
+# فرآیند، توان در ‎~۲۵۰ برگه در ثانیه قفل می‌شد در حالی که پردازنده اشباع
+# بود؛ با دو فرآیند، همان دستگاه ‎~۲۹۵ برگه در ثانیه داد و تأخیرِ ۹۵٪ از
+# ۹۰۲ میلی‌ثانیه به ۴۲۶ رسید. مابقیِ ظرفیتِ دستگاه صرفِ API و پایگاه‌داده
+# می‌شود، پس شمارِ فرآیندها باید از شمارِ هسته‌ها کمتر باشد.
+#
+# نامِ نمونه همان پورت است: ‎systemctl enable setshop-web@3100‎
+# ─────────────────────────────────────────────────────────────────────────────
+Type=simple
+User=setshop
+Group=setshop
+WorkingDirectory=/srv/setshop
+EnvironmentFile=/etc/setshop/env
+Environment=NODE_ENV=production
+Environment=API_BASE=http://127.0.0.1:3000
+Environment=PORT=%i
+ExecStart=/usr/bin/npm run start:web
+Restart=always
+RestartSec=3
+
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/srv/setshop/apps/web/.next /var/log/setshop
+PrivateDevices=true
+
+StandardOutput=append:/var/log/setshop/web-%i.log
+StandardError=append:/var/log/setshop/web-%i.log
+
+[Install]
+WantedBy=multi-user.target

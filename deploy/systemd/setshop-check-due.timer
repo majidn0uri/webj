@@ -1,0 +1,9 @@
+[Unit]
+Description=ست‌شاپ — یادآوری سررسید چک‌ها (هر روز ساعت ۸ صبح)
+
+[Timer]
+OnCalendar=*-*-* 08:00:00
+Persistent=true
+
+[Install]
+WantedBy=timers.target

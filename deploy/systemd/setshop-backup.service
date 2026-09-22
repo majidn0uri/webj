@@ -1,0 +1,13 @@
+[Unit]
+Description=ست‌شاپ — پشتیبان‌گیری از پایگاه‌داده
+Wants=setshop-backup.timer
+
+[Service]
+Type=oneshot
+User=setshop
+Group=setshop
+EnvironmentFile=/etc/setshop/env
+ExecStart=/srv/setshop/deploy/backup.sh
+
+[Install]
+WantedBy=multi-user.target

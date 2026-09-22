@@ -1,0 +1,97 @@
+# ═══════════════════════════════════════════════════════════════════════════
+# ست‌شاپ — دروازه‌های کیفیت (CI)
+# ───────────────────────────────────────────────────────────────────────────
+# با هر push و هر Pull Request رویِ سرورِ گیت‌هاب اجرا می‌شود. هیچ تغییری
+# «پذیرفته» نیست مگر این زنجیره سبز باشد:
+#
+#   ۱) مهاجرت‌پذیریِ پایگاه (سرویسِ Postgres بالا و سالم است)
+#   ۲) بررسیِ نوع — دو پیکربندی: ریشه‌یِ مخزن و برنامه‌یِ وب
+#   ۳) بازرسیِ پروژه (قانون‌هایِ الزامی: بدونِ راز، بدونِ منبعِ خارجی، …)
+#   ۴) ساختِ برنامه‌یِ وب (بدونِ خطا)
+#   ۵) قالبِ سایت (docs/qalib.html) با کدِ زنده هم‌خوان باشد — اگر طراحی
+#      عوض شده و قالب بازتولید نشده، اینجا رد می‌شود
+#   ۶) همه‌یِ آزمون‌ها (۵۹۴ آزمون در ۴۰ پرونده)
+#
+# چرا نسخه‌ها سنجاق شده‌اند؟ چون «آخرین نسخه» یعنی ساختِ امروز ممکن است فردا
+# بشکند — بی‌آنکه کسی چیزی عوض کرده باشد. عددِ ثابت، تکرارپذیری می‌آورد.
+# ═══════════════════════════════════════════════════════════════════════════
+
+name: کیفیت
+
+on:
+  push:
+    branches: ['**']
+  pull_request:
+    branches: [main]
+
+# اجرایِ هم‌زمان روی یک شاخه بی‌فایده است؛ تازه‌تر جایِ قدیمی‌تر را می‌گیرد
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  quality:
+    name: دروازه‌های کیفیت
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+
+    services:
+      # دو پرونده‌یِ آزمون (تأمین و بازرگانی) به ویژگی‌هایِ واقعیِ Postgres
+      # نیاز دارند — قفلِ مشورتی، تراکنشِ تودرتو، و رفتارِ هم‌زمانی. بقیه‌یِ
+      # آزمون‌ها در حافظه اجرا می‌شوند. این سرویس فقط برای همان دو تاست.
+      postgres:
+        image: postgres:18
+        env:
+          POSTGRES_USER: setshop
+          POSTGRES_PASSWORD: setshop
+          POSTGRES_DB: setshop
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U setshop -d setshop"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 10
+
+    env:
+      DB_URL: postgres://setshop:setshop@localhost:5432/setshop
+      NODE_ENV: test
+
+    steps:
+      - name: دریافتِ کد
+        uses: actions/checkout@v4
+
+      - name: نصبِ نود (نسخه‌یِ سنجاق‌شده)
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.20.2'
+          cache: 'npm'
+
+      - name: بازیابیِ وابستگی‌ها
+        run: npm ci
+
+      - name: ۲) بررسیِ نوع — مخزن
+        run: npm run typecheck
+
+      - name: ۲) بررسیِ نوع — برنامه‌یِ وب
+        run: npx tsc -p apps/web --noEmit
+
+      - name: ۳) بازرسیِ پروژه
+        run: npm run check
+
+      - name: ۴) ساختِ برنامه‌یِ وب
+        run: npm run build:web
+
+      - name: ۵) قالبِ سایت تازه باشد
+        run: npm run template:check
+
+      - name: ۶) آزمون‌ها
+        run: npm test
+
+      - name: گزارش
+        if: always()
+        run: |
+          echo "────────────────────────────────────────"
+          echo "شاخه:   ${{ github.ref_name }}"
+          echo "commit: ${{ github.sha }}"
+          echo "────────────────────────────────────────"

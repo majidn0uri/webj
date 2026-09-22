@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>پیش‌نمایش بصری سایت فروشگاه</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Tahoma,'Segoe UI',sans-serif;background:#eef1f6;color:#28323c;font-size:13px;line-height:1.8}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1080px;margin:0 auto;padding:0 14px}
+.hide{display:none!important}
+button{font-family:inherit}
+/* ---------- نوار دمو ---------- */
+.demobar{position:sticky;top:0;z-index:50;background:#17293e;padding:10px 14px 12px;border-radius:0 0 14px 14px;max-width:1080px;margin:0 auto 14px}
+.demobar h1{color:#fff;font-size:14.5px;margin-bottom:8px;text-align:center}
+.demobar p{color:#9db4cc;font-size:10.5px;text-align:center;margin-top:6px}
+.tabs{display:flex;flex-wrap:wrap;gap:6px;justify-content:center}
+.tb{background:#2c4664;color:#cfe0f2;border:none;border-radius:20px;padding:5px 13px;font-size:11.5px;cursor:pointer}
+.tb.on{background:#fff;color:#17293e;font-weight:bold}
+/* ---------- هدر مشترک ---------- */
+.announce{background:#17293e;color:#ffd9a8;text-align:center;font-size:11.5px;padding:5px}
+.top{background:#fff;display:flex;align-items:center;gap:14px;padding:12px 0;flex-wrap:wrap}
+.logo{font-size:19px;font-weight:bold;color:#1F4E79;white-space:nowrap}
+.search{flex:1;min-width:200px;background:#f1f5f9;border:1px solid #dbe4ee;border-radius:10px;padding:8px 14px;color:#8a99ab;font-size:12.5px}
+.icons{display:flex;gap:10px;align-items:center;font-size:12px}
+.ic{position:relative;background:#f1f5f9;border-radius:10px;padding:7px 12px;cursor:pointer;white-space:nowrap}
+.cnt{position:absolute;top:-7px;left:-7px;background:#e11d48;color:#fff;border-radius:50%;font-size:10px;min-width:17px;height:17px;line-height:17px;text-align:center;font-weight:bold}
+.catnav{background:#1F4E79;display:flex;flex-wrap:wrap;gap:2px;padding:0 10px}
+.catnav a{color:#dbe9f7;padding:9px 13px;font-size:12.5px}
+.catnav a:hover,.catnav a.hot{background:#2b628f;border-radius:8px 8px 0 0}
+.catnav a.hot{color:#ffd9a8;font-weight:bold}
+/* ---------- فوتر مشترک ---------- */
+footer{background:#17293e;color:#b9c9da;margin-top:26px;padding:26px 0 14px;font-size:12px}
+.fgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:18px}
+footer h4{color:#fff;font-size:13px;margin-bottom:8px}
+footer li{list-style:none;padding:2px 0}
+.ftrust{display:flex;gap:14px;align-items:center}
+.fbox{background:#233a55;border-radius:10px;padding:10px 14px;font-size:11px;text-align:center}
+.copy{border-top:1px solid #2c4664;margin-top:18px;padding-top:12px;text-align:center;font-size:11px;color:#8fa5bd}
+/* ---------- اجزای عمومی ---------- */
+.sec{display:flex;align-items:center;justify-content:space-between;margin:26px 0 12px}
+.sec h2{font-size:16px;color:#1F4E79}
+.sec .more{font-size:12px;color:#1D7AA8}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(175px,1fr));gap:12px}
+.card{background:#fff;border:1px solid #e3eaf2;border-radius:14px;padding:10px;position:relative;transition:.15s}
+.card:hover{box-shadow:0 4px 14px rgba(31,78,121,.13)}
+.img{height:120px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:46px;margin-bottom:8px}
+.cname{font-size:12.5px;font-weight:bold;height:38px;overflow:hidden}
+.dots{display:flex;gap:5px;margin:4px 0}
+.dot{width:13px;height:13px;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 1px #c9d6e4}
+.pr{font-size:13px;margin:4px 0}
+.pr b{color:#1F4E79}
+.pr s{color:#9aa7b5;font-size:11.5px;margin-left:5px}
+.off{position:absolute;top:16px;right:16px;background:#e11d48;color:#fff;font-size:11px;font-weight:bold;border-radius:8px;padding:1px 8px}
+.tag{position:absolute;top:16px;left:16px;background:#fff;border:1px solid #dbe4ee;color:#1D7AA8;font-size:10.5px;border-radius:8px;padding:0 8px}
+.stock{font-size:11px;margin:2px 0 8px}
+.stock.ok{color:#1E7A46}
+.stock.low{color:#B35C00}
+.stock.no{color:#a33}
+.addbtn{width:100%;background:#1F4E79;color:#fff;border:none;border-radius:9px;padding:7px;font-size:12px;cursor:pointer}
+.addbtn:hover{background:#2b628f}
+.addbtn:disabled{background:#c6d0da;cursor:not-allowed}
+.fav{position:absolute;bottom:64px;left:14px;background:#fff;border:1px solid #e3eaf2;border-radius:50%;width:28px;height:28px;cursor:pointer;font-size:13px}
+/* ---------- صفحه اول ---------- */
+.hero{background:linear-gradient(120deg,#1F4E79,#1D7AA8);border-radius:16px;color:#fff;padding:38px 30px;position:relative;overflow:hidden}
+.hero h2{font-size:24px;margin-bottom:6px}
+.hero p{color:#d4e6f5;font-size:13px}
+.hero .cta{display:inline-block;background:#ffd166;color:#5c4300;font-weight:bold;border-radius:10px;padding:8px 22px;margin-top:14px;font-size:13px}
+.hdots{position:absolute;bottom:14px;left:50%;transform:translateX(-50%);display:flex;gap:6px}
+.hdots span{width:9px;height:9px;border-radius:50%;background:#ffffff55}
+.hdots span.on{background:#fff}
+.midbanner{background:linear-gradient(120deg,#7C3AAD,#B35C9E);border-radius:14px;color:#fff;padding:18px 22px;margin:18px 0;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
+.trust{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px;margin:18px 0}
+.titem{background:#fff;border:1px solid #e3eaf2;border-radius:12px;padding:12px;text-align:center;font-size:12px}
+.titem .em{font-size:24px;display:block}
+.brandrow{display:flex;flex-wrap:wrap;gap:8px}
+.bchip{background:#fff;border:1px solid #e3eaf2;border-radius:20px;padding:5px 16px;font-size:12px;color:#41546b}
+.news{background:#fff;border:1px solid #e3eaf2;border-radius:14px;padding:18px;display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;margin:18px 0}
+.newsinput{display:flex;gap:8px;flex:1;min-width:240px}
+.newsinput input{flex:1;border:1px solid #dbe4ee;border-radius:10px;padding:8px 12px;font-family:inherit}
+.newsinput button{background:#1F4E79;color:#fff;border:none;border-radius:10px;padding:8px 18px;cursor:pointer}
+/* ---------- فهرست ---------- */
+.crumb{font-size:11.5px;color:#7d8ea0;margin:14px 0}
+.layout{display:flex;gap:14px;align-items:flex-start;flex-wrap:wrap}
+.filters{width:230px;background:#fff;border:1px solid #e3eaf2;border-radius:14px;padding:14px}
+.fgroup{border-bottom:1px dashed #e0e8f1;padding-bottom:10px;margin-bottom:10px}
+.fgroup h4{font-size:12.5px;color:#1F4E79;margin-bottom:6px}
+.frow{display:flex;align-items:center;gap:7px;font-size:12px;padding:2px 0;color:#41546b}
+.frow input{accent-color:#1F4E79}
+.rng{display:flex;gap:6px;align-items:center;font-size:11px;color:#63748a}
+.rng input{width:70px;border:1px solid #dbe4ee;border-radius:8px;padding:4px;font-family:inherit;font-size:11px}
+.swrow{display:flex;gap:7px;flex-wrap:wrap}
+.sw{width:22px;height:22px;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 1px #c9d6e4;cursor:pointer}
+.sw.sel{box-shadow:0 0 0 2.5px #1F4E79}
+select{border:1px solid #dbe4ee;border-radius:8px;padding:5px;font-family:inherit;font-size:11.5px;background:#fff}
+.listbar{display:flex;justify-content:space-between;align-items:center;background:#fff;border:1px solid #e3eaf2;border-radius:12px;padding:8px 12px;margin-bottom:12px;font-size:12px;flex-wrap:wrap;gap:8px}
+.viewtog{display:flex;gap:4px}
+.vt{width:30px;height:26px;border:1px solid #dbe4ee;background:#fff;border-radius:7px;cursor:pointer}
+.vt.on{background:#1F4E79;color:#fff}
+.content{flex:1;min-width:280px}
+.pager{display:flex;gap:6px;justify-content:center;margin:18px 0}
+.pg{min-width:34px;height:32px;border:1px solid #dbe4ee;background:#fff;border-radius:9px;cursor:pointer;font-size:12px}
+.pg.on{background:#1F4E79;color:#fff;border-color:#1F4E79}
+/* ---------- صفحه کالا ---------- */
+.pd{display:grid;grid-template-columns:1fr 1.25fr;gap:18px;background:#fff;border:1px solid #e3eaf2;border-radius:16px;padding:18px}
+.gmain{height:270px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:100px;background:linear-gradient(135deg,#eaf2f8,#d5e6f3)}
+.thumbs{display:flex;gap:8px;margin-top:10px}
+.thumbs .th{width:64px;height:56px;border-radius:9px;border:2px solid #dbe4ee;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:24px;background:#eef4f9}
+.thumbs .th.on{border-color:#1F4E79}
+.pd h2{font-size:17px;color:#1F4E79}
+.brandchip{display:inline-block;background:#eaf2f8;color:#1D7AA8;border-radius:14px;padding:1px 12px;font-size:11.5px;margin:4px 0}
+.rating{color:#c79b2e;font-size:12.5px}
+.rating span{color:#7d8ea0}
+.pricebig{font-size:19px;font-weight:bold;color:#1F4E79;margin:8px 0 2px}
+.pricebig s{font-size:13px;color:#9aa7b5;font-weight:normal;margin-left:8px}
+.save{color:#e11d48;font-size:12px;font-weight:bold}
+.lbl{font-size:12px;color:#41546b;margin:10px 0 4px;font-weight:bold}
+.swatches{display:flex;gap:9px;flex-wrap:wrap}
+.swatch{width:34px;height:34px;border-radius:50%;border:3px solid #fff;box-shadow:0 0 0 1.5px #c9d6e4;cursor:pointer}
+.swatch.sel{box-shadow:0 0 0 3px #1F4E79}
+#clrname{font-size:11.5px;color:#1E7A46;margin-top:5px}
+.qty{display:inline-flex;align-items:center;border:1px solid #dbe4ee;border-radius:10px;overflow:hidden}
+.qty button{width:34px;height:34px;border:none;background:#f1f5f9;cursor:pointer;font-size:15px}
+.qty b{width:44px;text-align:center}
+.pdbtns{display:flex;gap:8px;margin:12px 0;flex-wrap:wrap}
+.bigadd{flex:1;background:#1F4E79;color:#fff;border:none;border-radius:11px;padding:11px;font-size:13.5px;font-weight:bold;cursor:pointer}
+.bigadd:hover{background:#2b628f}
+.heartbtn{width:46px;border:1px solid #dbe4ee;background:#fff;border-radius:11px;cursor:pointer;font-size:17px}
+.sharebtn{width:46px;border:1px solid #dbe4ee;background:#fff;border-radius:11px;cursor:pointer;font-size:15px}
+.kfs{display:grid;grid-template-columns:1fr 1fr;gap:5px;font-size:11.5px;color:#41546b;margin:8px 0}
+.kfs div::before{content:'✓ ';color:#1E7A46;font-weight:bold}
+.assure{background:#f0faf4;border:1px solid #cbe8d6;border-radius:11px;padding:9px 12px;font-size:11.5px;color:#1E6b40;margin-top:8px}
+/* تب‌های صفحه کالا */
+.ptabs{display:flex;gap:4px;margin:20px 0 0;flex-wrap:wrap}
+.ptb{background:#dde6ef;border:none;border-radius:10px 10px 0 0;padding:8px 18px;font-size:12.5px;cursor:pointer;color:#41546b}
+.ptb.on{background:#fff;color:#1F4E79;font-weight:bold;border:1px solid #e3eaf2;border-bottom-color:#fff}
+.pbody{background:#fff;border:1px solid #e3eaf2;border-radius:0 12px 12px 12px;padding:16px;font-size:12.5px}
+.spec{width:100%;border-collapse:collapse}
+.spec td{border:1px solid #e3eaf2;padding:7px 12px;font-size:12px}
+.spec td:first-child{background:#f4f8fc;color:#1F4E79;font-weight:bold;width:180px}
+.phonechips{display:flex;flex-wrap:wrap;gap:7px}
+.pchip{background:#eaf2f8;border:1px solid #d3e2ef;border-radius:9px;padding:4px 12px;font-size:11.5px;color:#28323c}
+.review{border-bottom:1px dashed #e0e8f1;padding:10px 0}
+.review .stars{color:#c79b2e;font-size:12px}
+.review b{font-size:12.5px}
+.review p{font-size:12px;color:#41546b}
+.reviewform{margin-top:12px;background:#f4f8fc;border-radius:11px;padding:12px}
+.reviewform input,.reviewform textarea{width:100%;border:1px solid #dbe4ee;border-radius:9px;padding:7px 10px;font-family:inherit;font-size:12px;margin-bottom:7px}
+/* ---------- سبد و پرداخت ---------- */
+.stepbar{display:flex;gap:6px;margin:16px 0;flex-wrap:wrap}
+.stp{flex:1;min-width:130px;background:#fff;border:1px solid #dbe4ee;border-radius:11px;padding:9px 12px;font-size:12px;text-align:center;color:#7d8ea0}
+.stp.done{color:#1E7A46;border-color:#bfe3cd;background:#f0faf4}
+.stp.on{color:#1F4E79;border-color:#1F4E79;font-weight:bold;background:#eaf2f8}
+.checkout{display:flex;gap:14px;align-items:flex-start;flex-wrap:wrap}
+.cform{flex:1.6;min-width:300px;display:flex;flex-direction:column;gap:12px}
+.cbox{background:#fff;border:1px solid #e3eaf2;border-radius:14px;padding:14px}
+.cbox h3{font-size:13.5px;color:#1F4E79;margin-bottom:10px}
+.frow2{display:flex;gap:10px;flex-wrap:wrap}
+.frow2 label{flex:1;min-width:140px;font-size:11.5px;color:#41546b;display:block}
+.frow2 input,.frow2 select{width:100%;border:1px solid #dbe4ee;border-radius:9px;padding:7px 10px;font-family:inherit;font-size:12px;margin-top:3px}
+.radio{display:flex;justify-content:space-between;align-items:center;border:1px solid #dbe4ee;border-radius:11px;padding:9px 12px;margin-bottom:7px;cursor:pointer;font-size:12.5px}
+.radio.sel{border-color:#1F4E79;background:#eaf2f8}
+.radio .price{font-weight:bold;color:#1F4E79}
+.rnote{font-size:10.5px;color:#B35C00;background:#fdf3e3;border-radius:8px;padding:2px 9px}
+.summary{flex:1;min-width:270px;background:#fff;border:1px solid #e3eaf2;border-radius:14px;padding:14px;position:sticky;top:70px}
+.summary h3{font-size:13.5px;color:#1F4E79;margin-bottom:10px}
+.sitem{display:flex;justify-content:space-between;font-size:12px;padding:5px 0;border-bottom:1px dashed #e8eef5}
+.sitem .sub{color:#8a99ab;font-size:10.5px;display:block}
+.srow{display:flex;justify-content:space-between;font-size:12.5px;padding:4px 0;color:#41546b}
+.srow.total{border-top:2px solid #1F4E79;margin-top:8px;padding-top:10px;font-size:15px;font-weight:bold;color:#1F4E79}
+.coupon{display:flex;gap:7px;margin:10px 0}
+.coupon input{flex:1;border:1px dashed #c9b06a;border-radius:9px;padding:7px 10px;font-family:inherit;font-size:11.5px;background:#fffdf5}
+.coupon button{background:#f4f8fc;border:1px solid #dbe4ee;border-radius:9px;padding:7px 14px;cursor:pointer;font-size:11.5px}
+.paybtn{width:100%;background:#1E7A46;color:#fff;border:none;border-radius:11px;padding:12px;font-size:14px;font-weight:bold;cursor:pointer;margin-top:8px}
+.paybtn:hover{background:#25654a}
+/* ---------- پنل مشتری ---------- */
+.panel{display:flex;gap:14px;align-items:flex-start;flex-wrap:wrap}
+.pmenu{width:210px;background:#fff;border:1px solid #e3eaf2;border-radius:14px;padding:10px}
+.pmenu a{display:block;padding:8px 12px;border-radius:9px;font-size:12.5px;color:#41546b;margin-bottom:2px}
+.pmenu a.on,.pmenu a:hover{background:#eaf2f8;color:#1F4E79;font-weight:bold}
+.pmenu a.out{color:#a33}
+.pmain{flex:1;min-width:300px;display:flex;flex-direction:column;gap:12px}
+.hello{background:linear-gradient(120deg,#1F4E79,#1D7AA8);color:#fff;border-radius:14px;padding:16px 18px}
+.hello h3{font-size:15px}
+.hello p{font-size:12px;color:#d4e6f5}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px}
+.stat{background:#fff;border:1px solid #e3eaf2;border-radius:12px;padding:12px;text-align:center}
+.stat .n{font-size:19px;font-weight:bold;color:#1F4E79;display:block}
+.stat .t{font-size:11.5px;color:#7d8ea0}
+.pcard2{background:#fff;border:1px solid #e3eaf2;border-radius:14px;padding:14px}
+.pcard2 h3{font-size:13.5px;color:#1F4E79;margin-bottom:10px}
+.otable{width:100%;border-collapse:collapse;font-size:12px}
+.otable th{background:#f4f8fc;color:#1F4E79;padding:8px;font-size:11.5px}
+.otable td{border-top:1px solid #e8eef5;padding:8px;text-align:center}
+.status{display:inline-block;border-radius:14px;padding:1px 12px;font-size:11px;font-weight:bold}
+.st-sent{background:#eaf2f8;color:#1D7AA8}
+.st-pack{background:#fdf3e3;color:#B35C00}
+.st-deliv{background:#f0faf4;color:#1E7A46}
+.tl{margin-top:6px}
+.tli{display:flex;gap:12px;position:relative;padding-bottom:16px}
+.tli::before{content:'';position:absolute;right:10px;top:22px;bottom:0;width:2px;background:#e0e8f1}
+.tli:last-child::before{display:none}
+.tli .b{width:22px;height:22px;border-radius:50%;background:#dde6ef;color:#fff;display:flex;align-items:center;justify-content:center;font-size:11px;flex-shrink:0;z-index:1}
+.tli.done .b{background:#1E7A46}
+.tli.now .b{background:#B35C00;box-shadow:0 0 0 3px #fdf3e3}
+.tli .tt{font-size:12px;font-weight:bold;color:#28323c}
+.tli .td{font-size:11px;color:#8a99ab}
+/* ---------- ورود ---------- */
+.auth{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:700px){.auth{grid-template-columns:1fr}.pd{grid-template-columns:1fr}}
+.acard{background:#fff;border:1px solid #e3eaf2;border-radius:14px;padding:18px}
+.acard h3{font-size:14.5px;color:#1F4E79;margin-bottom:4px}
+.acard .hint{font-size:11.5px;color:#7d8ea0;margin-bottom:12px}
+.acard label{display:block;font-size:11.5px;color:#41546b;margin-top:8px}
+.acard input{width:100%;border:1px solid #dbe4ee;border-radius:9px;padding:8px 10px;font-family:inherit;font-size:12px;margin-top:3px}
+.abtn{width:100%;background:#1F4E79;color:#fff;border:none;border-radius:10px;padding:10px;font-size:13px;font-weight:bold;cursor:pointer;margin-top:12px}
+.alink{text-align:center;font-size:11.5px;color:#1D7AA8;margin-top:10px;cursor:pointer}
+.otp{background:#f4f8fc;border-radius:10px;padding:10px;font-size:11.5px;color:#41546b;margin-top:10px;border:1px dashed #c9d6e4}
+.minis{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px;margin-top:14px}
+.mini{background:#fff;border:1px solid #e3eaf2;border-radius:12px;padding:12px;text-align:center;font-size:12px}
+.mini .em{font-size:22px;display:block;margin-bottom:4px}
+.mini p{font-size:10.5px;color:#7d8ea0;margin-top:3px}
+@media(max-width:760px){.filters{width:100%}}
+</style>
+</head>
+<body>
+
+<!-- ═══════ نوار دمو ═══════ -->
+<div class="demobar">
+  <h1>🎨 پیش‌نمایش بصری سایت فروشگاه — دموی تعاملی</h1>
+  <div class="tabs">
+    <button class="tb on" onclick="pg('p1',this)">صفحه اول</button>
+    <button class="tb" onclick="pg('p2',this)">فهرست و فیلتر</button>
+    <button class="tb" onclick="pg('p3',this)">صفحه کالا</button>
+    <button class="tb" onclick="pg('p4',this)">سبد و پرداخت</button>
+    <button class="tb" onclick="pg('p5',this)">پنل مشتری</button>
+    <button class="tb" onclick="pg('p6',this)">ورود و صفحات کمکی</button>
+  </div>
+  <p>این یک ماکاپ نمایشی است تا اجزای بصری لازم سایت را ببینید — سبد، رنگ‌ها، تب‌ها و منوها قابل کلیک هستند</p>
+</div>
+
+<!-- ═══════ هدر مشترک (در همه صفحات) ═══════ -->
+<div class="announce">🚚 ارسال رایگان برای سفارش‌های بالای ۵۰۰٬۰۰۰ تومان — حراج پاییزه تا ۴۰٪ تخفیف</div>
+<div class="wrap">
+  <div class="top">
+    <div class="logo">📱 تک‌شاپ</div>
+    <div class="search">🔎 جستجو در بیش از ۲۰۰ کالا… (جستجوی زنده با پیشنهاد)</div>
+    <div class="icons">
+      <div class="ic">👤 ورود / ثبت‌نام</div>
+      <div class="ic">❤<span class="cnt">۵</span></div>
+      <div class="ic">🛒 سبد خرید<span class="cnt">۳</span></div>
+    </div>
+  </div>
+</div>
+<nav class="catnav wrap">
+  <a href="#" onclick="pg('p2',document.querySelectorAll('.tb')[1]);return false">قاب گوشی</a>
+  <a href="#" onclick="pg('p2',document.querySelectorAll('.tb')[1]);return false">شارژر و کابل</a>
+  <a href="#" onclick="pg('p2',document.querySelectorAll('.tb')[1]);return false">هدفون و هندزفری</a>
+  <a href="#" onclick="pg('p2',document.querySelectorAll('.tb')[1]);return false">پاوربانک</a>
+  <a href="#" onclick="pg('p2',document.querySelectorAll('.tb')[1]);return false">محافظ صفحه</a>
+  <a href="#" onclick="pg('p2',document.querySelectorAll('.tb')[1]);return false">هولدر و پایه</a>
+  <a href="#" class="hot" onclick="pg('p1',document.querySelectorAll('.tb')[0]);return false">🔥 حراج</a>
+</nav>
+
+<main class="wrap">
+
+<!-- ═══════════════ صفحه ۱: صفحه اول ═══════════════ -->
+<div class="page" id="p1">
+
+  <div class="hero" style="margin-top:14px">
+    <h2>حراج پاییزه تک‌شاپ 🍂</h2>
+    <p>تا ۴۰٪ تخفیف روی قاب، گلس، شارژر و هدفون — فقط تا پایان هفته</p>
+    <span class="cta" onclick="pg('p2',document.querySelectorAll('.tb')[1])" style="cursor:pointer">مشاهده تخفیف‌ها ←</span>
+    <div class="hdots"><span class="on"></span><span></span><span></span></div>
+  </div>
+
+  <div class="sec">
+    <h2>🔥 کالاهای ترند</h2>
+    <span class="more" onclick="pg('p2',document.querySelectorAll('.tb')[1])" style="cursor:pointer">مشاهده همه ←</span>
+  </div>
+  <div class="cards">
+    <div class="card">
+      <div class="img" style="background:linear-gradient(135deg,#eaf2f8,#d5e6f3)">📱</div>
+      <span class="tag">ترند</span>
+      <div class="cname">قاب سیلیکونی لوکس مدل Arc</div>
+      <div class="dots"><span class="dot" style="background:#111"></span><span class="dot" style="background:#2563eb"></span><span class="dot" style="background:#dc2626"></span><span class="dot" style="background:#f3f4f6"></span></div>
+      <div class="pr"><b>۱۴۹٬۰۰۰</b> تومان</div>
+      <div class="stock ok">✓ موجود</div>
+      <button class="addbtn">افزودن به سبد</button>
+    </div>
+    <div class="card">
+      <div class="img" style="background:linear-gradient(135deg,#f3e8ff,#e4d0f7)">🎧</div>
+      <span class="tag">ترند</span>
+      <div class="cname">هدفون بی‌سیم Pro Bass</div>
+      <div class="pr"><b>۹۹۰٬۰۰۰</b> تومان</div>
+      <div class="stock ok">✓ موجود</div>
+      <button class="addbtn">افزودن به سبد</button>
+    </div>
+    <div class="card">
+      <div class="img" style="background:linear-gradient(135deg,#fef3e2,#f8dfb8)">🔋</div>
+      <div class="cname">پاوربانک ۲۰٬۰۰۰ میلی‌آمپر فست</div>
+      <div class="pr"><b>۷۲۰٬۰۰۰</b> تومان</div>
+      <div class="stock low">⏳ فقط ۳ عدد</div>
+      <button class="addbtn">افزودن به سبد</button>
+    </div>
+    <div class="card">
+      <div class="img" style="background:linear-gradient(135deg,#e7f6ec,#c9ead6)">⌚</div>
+      <span class="tag">جدید</span>
+      <div class="cname">ساعت هوشمند Series X</div>
+      <div class="pr"><b>۲٬۴۵۰٬۰۰۰</b> تومان</div>
+      <div class="stock ok">✓ موجود</div>
+      <button class="addbtn">افزودن به سبد</button>
+    </div>
+  </div>
+
+  <div class="midbanner">
+    <div>
+      <b>پاوربانک‌های فندکی‌دار رسیدند! ⚡</b>
+      <div style="font-size:12px;color:#f3dff0">مناسب سفر و خودرو — همراه با کابل هدیه</div>
+    </div>
+    <span class="cta" style="background:#fff;color:#7C3AAD;font-weight:bold;border-radius:10px;padding:7px 18px;cursor:pointer">مشاهده ←</span>
+  </div>
+
+  <div class="sec">
+    <h2>🏷️ کالاهای دارای تخفیف</h2>
+    <span class="more" style="cursor:pointer">مشاهده همه ←</span>
+  </div>
+  <div class="cards">
+    <div class="card">
+      <div class="img" style="background:linear-gradient(135deg,#eaf2f8,#d5e6f3)">📱</div>
+      <span class="off">−۲۵٪</span>
+      <div class="cname">قاب ژله‌ای ضد ضربه Magsafe</div>
+      <div class="pr"><s>۲۰۰٬۰۰۰</s><b>۱۵۰٬۰۰۰</b> تومان</div>
+      <div class="stock ok">✓ موجود</div>
+      <button class="addbtn">افزودن به سبد</button>
+    </div>
+    <div class="card">
+      <div class="img" style="background:linear-gradient(135deg,#fdf0f0,#f5d7d7)">⚡</div>
+      <span class="off">−۲۷٪</span>
+      <div class="cname">کابل تایپ‌سی بافته ۱ متر</div>
+      <div class="pr"><s>۱۶۵٬۰۰۰</s><b>۱۲۰٬۰۰۰</b> تومان</div>
+      <div class="stock ok">✓ موجود</div>
+      <button class="addbtn">افزودن به سبد</button>
+    </div>
+    <div class="card">
+      <div class="img" style="background:linear-gradient(135deg,#f0f7fd,#d9ecf9)">🛡️</div>
+      <span class="off">−۱۵٪</span>
+      <div class="cname">گلس نانو محافظ دوربین</div>
+      <div class="pr"><s>۹۵٬۰۰۰</s><b>۸۰٬۰۰۰</b> تومان</div>
+      <div class="stock low">⏳ فقط ۲ عدد</div>
+      <button class="addbtn">افزودن به سبد</button>
+    </div>
+    <div class="card">
+      <div class="img" style="background:linear-gradient(135deg,#f2f2ee,#e2e2d5)">🔌</div>
+      <span class="off">−۲۰٪</span>
+      <div class="cname">شارژر دیواری فست ۳۳ وات</div>
+      <div class="pr"><s>۴۵۰٬۰۰۰</s><b>۳۶۰٬۰۰۰</b> تومان</div>
+      <div class="stock ok">✓ موجود</div>
+      <button class="addbtn">افزودن به سبد</button>
+    </div>
+  </div>
+
+  <div class="trust">
+    <div class="titem"><span class="em">🛡️</span><b>ضمانت اصالت کالا</b><br>همه کالاها اورجینال</div>
+    <div class="titem"><span class="em">🚚</span><b>ارسال سریع</b><br>تهران ۲۴ ساعته، شهرستان ۲–۴ روزه</div>
+    <div class="titem"><span class="em">💳</span><b>پرداخت امن</b><br>درگاه معتبر بانکی</div>
+    <div class="titem"><span class="em">↩️</span><b>۷ روز ضمانت بازگشت</b><br>بدون قید و شرط</div>
+  </div>
+
+  <div class="sec"><h2>برندها</h2></div>
+  <div class="brandrow">
+    <span class="bchip">Anker</span><span class="bchip">Baseus</span><span class="bchip">Ugreen</span>
+    <span class="bchip">Remax</span><span class="bchip">Rock</span><span class="bchip">Nillkin</span>
+    <span class="bchip">Joyroom</span><span class="bchip">Xiaomi</span><span class="bchip">Hoco</span>
+  </div>
+
+  <div class="news">
+    <div>
+      <b>از تخفیف‌ها زودتر باخبر شوید 📩</b>
+      <div style="font-size:11.5px;color:#7d8ea0">شماره موبایل یا ایمیل خود را وارد کنید</div>
+    </div>
+    <div class="newsinput">
+      <input placeholder="۰۹۱۲ ـ ـ ـ ـ ـ ـ ـ">
+      <button>عضویت</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ صفحه ۲: فهرست و فیلتر ═══════════════ -->
+<div class="page hide" id="p2">
+  <div class="crumb">خانه ← قاب گوشی ← قاب سیلیکونی &nbsp;|&nbsp; ۲۴ کالا یافت شد</div>
+  <div class="layout">
+    <aside class="filters">
+      <div class="fgroup">
+        <h4>برند</h4>
+        <label class="frow"><input type="checkbox" checked> Baseus</label>
+        <label class="frow"><input type="checkbox"> Nillkin</label>
+        <label class="frow"><input type="checkbox"> Rock</label>
+        <label class="frow"><input type="checkbox"> Joyroom</label>
+      </div>
+      <div class="fgroup">
+        <h4>محدوده قیمت (تومان)</h4>
+        <div class="rng">از <input value="۵۰٬۰۰۰"> تا <input value="۵۰۰٬۰۰۰"></div>
+      </div>
+      <div class="fgroup">
+        <h4>رنگ</h4>
+        <div class="swrow">
+          <span class="sw" style="background:#111111"></span>
+          <span class="sw sel" style="background:#2563eb"></span>
+          <span class="sw" style="background:#dc2626"></span>
+          <span class="sw" style="background:#16a34a"></span>
+          <span class="sw" style="background:#f3f4f6"></span>
+          <span class="sw" style="background:#a855f7"></span>
+        </div>
+      </div>
+      <div class="fgroup">
+        <h4>سازگاری با گوشی</h4>
+        <select style="width:100%">
+          <option>انتخاب برند گوشی…</option>
+          <option>اپل (Apple)</option>
+          <option>سامسونگ (Samsung)</option>
+          <option>شیائومی (Xiaomi)</option>
+        </select>
+        <select style="width:100%;margin-top:6px">
+          <option>انتخاب مدل…</option>
+          <option>iPhone 15 Pro Max</option>
+          <option>Galaxy S24 Ultra</option>
+          <option>Redmi Note 13 Pro</option>
+        </select>
+      </div>
+      <div class="fgroup">
+        <h4>سایر</h4>
+        <label class="frow"><input type="checkbox" checked> فقط کالاهای موجود</label>
+        <label class="frow"><input type="checkbox"> فقط تخفیف‌دارها</label>
+      </div>
+    </aside>
+    <div class="content">
+      <div class="listbar">
+        <span>۲۴ کالا</span>
+        <div style="display:flex;gap:8px;align-items:center">
+          <span style="color:#7d8ea0">مرتب‌سازی:</span>
+          <select>
+            <option>پرفروش‌ترین</option>
+            <option>ارزان‌ترین</option>
+            <option>گران‌ترین</option>
+            <option>جدیدترین</option>
+            <option>بیشترین تخفیف</option>
+          </select>
+          <div class="viewtog">
+            <button class="vt on">▦</button>
+            <button class="vt">≡</button>
+          </div>
+        </div>
+      </div>
+      <div class="cards">
+        <div class="card">
+          <div class="img" style="background:linear-gradient(135deg,#eaf2f8,#d5e6f3)">📱</div>
+          <span class="off">−۲۵٪</span>
+          <div class="cname">قاب سیلیکونی لوکس مدل Arc</div>
+          <div class="dots"><span class="dot" style="background:#111"></span><span class="dot" style="background:#2563eb"></span><span class="dot" style="background:#dc2626"></span></div>
+          <div class="pr"><s>۲۰۰٬۰۰۰</s><b>۱۵۰٬۰۰۰</b> تومان</div>
+          <div class="stock ok">✓ موجود</div>
+          <button class="addbtn">افزودن به سبد</button>
+        </div>
+        <div class="card">
+          <div class="img" style="background:linear-gradient(135deg,#f3e8ff,#e4d0f7)">📱</div>
+          <span class="tag">جدید</span>
+          <div class="cname">قاب کریستالی شفاف ضد زردشدگی</div>
+          <div class="pr"><b>۱۸۵٬۰۰۰</b> تومان</div>
+          <div class="stock ok">✓ موجود</div>
+          <button class="addbtn">افزودن به سبد</button>
+        </div>
+        <div class="card">
+          <div class="img" style="background:linear-gradient(135deg,#fef3e2,#f8dfb8)">📱</div>
+          <span class="off">−۱۵٪</span>
+          <div class="cname">قاب چرمی روبان مدل Funky</div>
+          <div class="pr"><s>۴۲۰٬۰۰۰</s><b>۳۵۷٬۰۰۰</b> تومان</div>
+          <div class="stock ok">✓ موجود</div>
+          <button class="addbtn">افزودن به سبد</button>
+        </div>
+        <div class="card">
+          <div class="img" style="background:linear-gradient(135deg,#e7f6ec,#c9ead6)">📱</div>
+          <div class="cname">قاب ضد ضربه تقویت‌شده Impact</div>
+          <div class="pr"><b>۲۶۰٬۰۰۰</b> تومان</div>
+          <div class="stock low">⏳ فقط ۲ عدد</div>
+          <button class="addbtn">افزودن به سبد</button>
+        </div>
+        <div class="card">
+          <div class="img" style="background:linear-gradient(135deg,#fdf0f0,#f5d7d7)">📱</div>
+          <div class="cname">قاب ژله‌ای رنگی Simple</div>
+          <div class="dots"><span class="dot" style="background:#111"></span><span class="dot" style="background:#16a34a"></span><span class="dot" style="background:#f3f4f6"></span></div>
+          <div class="pr"><b>۹۵٬۰۰۰</b> تومان</div>
+          <div class="stock ok">✓ موجود</div>
+          <button class="addbtn">افزودن به سبد</button>
+        </div>
+        <div class="card">
+          <div class="img" style="background:linear-gradient(135deg,#f2f2ee,#e2e2d5)">📱</div>
+          <div class="cname">قاب مغناطیسی Magsafe پرو</div>
+          <div class="stock no">✗ ناموجود</div>
+          <button class="addbtn" disabled>اطلاع بده وقتی موجود شد</button>
+        </div>
+      </div>
+      <div class="pager">
+        <button class="pg">›</button>
+        <button class="pg on">۱</button>
+        <button class="pg">۲</button>
+        <button class="pg">۳</button>
+        <button class="pg">‹</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ صفحه ۳: صفحه کالا ═══════════════ -->
+<div class="page hide" id="p3">
+  <div class="crumb">خانه ← قاب گوشی ← قاب سیلیکونی لوکس مدل Arc</div>
+  <div class="pd">
+    <div>
+      <div class="gmain">📱</div>
+      <div class="thumbs">
+        <div class="th on">📱</div>
+        <div class="th">📷</div>
+        <div class="th">🔍</div>
+        <div class="th">📦</div>
+      </div>
+    </div>
+    <div>
+      <span class="brandchip">برند: Baseus</span>
+      <h2>قاب سیلیکونی لوکس مدل Arc — محافظ دوربین و لبه‌ها</h2>
+      <div class="rating">★★★★☆ ۴٫۵ <span>(۱۲۴ نظر)</span></div>
+      <div class="pricebig">۱۴۹٬۰۰۰ تومان <s>۱۹۸٬۰۰۰</s></div>
+      <div class="save">🔥 ۲۵٪ تخفیف — تا پایان هفته</div>
+
+      <div class="lbl">انتخاب رنگ:</div>
+      <div class="swatches">
+        <span class="swatch" style="background:#111111" data-name="مشکی" data-stock="۱۸" onclick="sw(this)"></span>
+        <span class="swatch sel" style="background:#1e3a8a" data-name="سرمه‌ای" data-stock="۱۲" onclick="sw(this)"></span>
+        <span class="swatch" style="background:#dc2626" data-name="قرمز" data-stock="۴" onclick="sw(this)"></span>
+        <span class="swatch" style="background:#f3f4f6" data-name="سفید" data-stock="۰" onclick="sw(this)"></span>
+      </div>
+      <div id="clrname">رنگ: سرمه‌ای — ۱۲ عدد موجود</div>
+
+      <div class="lbl">تعداد:</div>
+      <div class="qty">
+        <button>+</button><b>۱</b><button>−</button>
+      </div>
+
+      <div class="pdbtns">
+        <button class="bigadd" onclick="alert('✓ به سبد خرید اضافه شد (نمایش Toast)')">🛒 افزودن به سبد خرید</button>
+        <button class="heartbtn" title="افزودن به علاقه‌مندی‌ها">🤍</button>
+        <button class="sharebtn" title="اشتراک‌گذاری">🔗</button>
+      </div>
+
+      <div class="kfs">
+        <div>جنس سیلیکون درجه یک</div>
+        <div>لبه‌های بلند محافظ دوربین</div>
+        <div>سازگار با شارژ بی‌سیم</div>
+        <div>۴ رنگ بندی</div>
+      </div>
+      <div class="assure">🛡️ ضمانت اصالت کالا • ↩️ ۷ روز ضمانت بازگشت • 🚚 ارسال از انبار تهران</div>
+    </div>
+  </div>
+
+  <div class="ptabs">
+    <button class="ptb on" onclick="pt('ptab1',this)">توضیحات</button>
+    <button class="ptb" onclick="pt('ptab2',this)">مشخصات فنی</button>
+    <button class="ptb" onclick="pt('ptab3',this)">سازگاری با گوشی‌ها</button>
+    <button class="ptb" onclick="pt('ptab4',this)">نظرات (۱۲۴)</button>
+  </div>
+  <div class="pbody" id="ptab1">
+    قاب سیلیکونی Arc با جنس نرم و ضد لک، جهت محافظت کامل گوشی در برابر ضربه و خط‌وخش طراحی شده است.
+    لبه‌های بلند دور دوربین و صفحه، از حساس‌ترین نقاط گوشی محافظت می‌کنند. سطح داخلی نانومتری از خط‌وخش پشت گوشی جلوگیری می‌کند.
+  </div>
+  <div class="pbody hide" id="ptab2">
+    <table class="spec">
+      <tr><td>جنس</td><td>سیلیکون Liquid درجه یک</td></tr>
+      <tr><td>نوع محافظت</td><td>ضربه‌گیر چهارگوشه + لبه بلند دوربین</td></tr>
+      <tr><td>سازگاری شارژ بی‌سیم</td><td>دارد (Magsafe)</td></tr>
+      <tr><td>وزن</td><td>۲۸ گرم</td></tr>
+      <tr><td>رنگ‌ها</td><td>مشکی، سرمه‌ای، قرمز، سفید</td></tr>
+      <tr><td>کشور تولید</td><td>چین</td></tr>
+    </table>
+  </div>
+  <div class="pbody hide" id="ptab3">
+    <p style="margin-bottom:8px">این قاب با گوشی‌های زیر سازگار است (انتخاب از بانک مدل‌ها هنگام ثبت کالا):</p>
+    <div class="phonechips">
+      <span class="pchip">iPhone 15 Pro Max</span>
+      <span class="pchip">iPhone 15 Pro</span>
+      <span class="pchip">iPhone 15</span>
+      <span class="pchip">iPhone 14 Pro</span>
+      <span class="pchip">Galaxy S24 Ultra</span>
+      <span class="pchip">Galaxy S24</span>
+      <span class="pchip">Redmi Note 13 Pro</span>
+    </div>
+  </div>
+  <div class="pbody hide" id="ptab4">
+    <div class="review">
+      <span class="stars">★★★★★</span> <b>عالی بود!</b>
+      <p>کیفیت سیلیکونش خیلی خوبه، دقیقا اندازه گوشیم بود. ارسال هم سریع بود.</p>
+      <span style="font-size:11px;color:#8a99ab">— علی ر. | خرید تأیید‌شده ✓</span>
+    </div>
+    <div class="review">
+      <span class="stars">★★★★☆</span> <b>به قیمتش می‌ارزد</b>
+      <p>رنگ سرمه‌ایش قشنگه، فقط کاش عکس واقعی رنگ‌ها بیشتر بود.</p>
+      <span style="font-size:11px;color:#8a99ab">— مریم ک. | خرید تأییدشده ✓</span>
+    </div>
+    <div class="reviewform">
+      <b style="font-size:12.5px">ثبت نظر شما</b>
+      <div style="font-size:11px;color:#7d8ea0;margin:4px 0 8px">نظرات پس از تأیید مدیریت نمایش داده می‌شوند</div>
+      <input placeholder="نام شما">
+      <textarea rows="2" placeholder="نظر شما درباره این کالا…"></textarea>
+      <button class="addbtn" style="width:auto;padding:6px 22px">ارسال نظر</button>
+    </div>
+  </div>
+
+  <div class="sec"><h2>محصولات مرتبط</h2></div>
+  <div class="cards">
+    <div class="card">
+      <div class="img" style="background:linear-gradient(135deg,#f0f7fd,#d9ecf9)">🛡️</div>
+      <div class="cname">گلس نانو محافظ صفحه</div>
+      <div class="pr"><b>۸۰٬۰۰۰</b> تومان</div>
+      <div class="stock ok">✓ موجود</div>
+      <button class="addbtn">افزودن به سبد</button>
+    </div>
+    <div class="card">
+      <div class="img" style="background:linear-gradient(135deg,#f2f2ee,#e2e2d5)">🔌</div>
+      <div class="cname">شارژر فست ۳۳ وات</div>
+      <div class="pr"><b>۳۶۰٬۰۰۰</b> تومان</div>
+      <div class="stock ok">✓ موجود</div>
+      <button class="addbtn">افزودن به سبد</button>
+    </div>
+    <div class="card">
+      <div class="img" style="background:linear-gradient(135deg,#fdf0f0,#f5d7d7)">⚡</div>
+      <div class="cname">کابل تایپ‌سی بافته</div>
+      <div class="pr"><b>۱۲۰٬۰۰۰</b> تومان</div>
+      <div class="stock ok">✓ موجود</div>
+      <button class="addbtn">افزودن به سبد</button>
+    </div>
+    <div class="card">
+      <div class="img" style="background:linear-gradient(135deg,#e7f6ec,#c9ead6)">🧲</div>
+      <div class="cname">هولدر مغناطیسی خودرو</div>
+      <div class="pr"><b>۳۸۰٬۰۰۰</b> تومان</div>
+      <div class="stock ok">✓ موجود</div>
+      <button class="addbtn">افزودن به سبد</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ صفحه ۴: سبد و پرداخت ═══════════════ -->
+<div class="page hide" id="p4">
+  <div class="crumb">خانه ← سبد خرید ← تکمیل خرید</div>
+  <div class="stepbar">
+    <div class="stp done">۱. آدرس تحویل ✓</div>
+    <div class="stp on">۲. روش ارسال</div>
+    <div class="stp">۳. پرداخت</div>
+  </div>
+  <div class="checkout">
+    <div class="cform">
+      <div class="cbox">
+        <h3>📍 آدرس تحویل</h3>
+        <div class="radio sel">
+          <span>🏠 خانه — تهران، خیابان ولیعصر، کوچه بهار، پلاک ۱۲ — ۰۹۱۲۳۴۵۶۷۸۹</span>
+          <span style="font-size:11px;color:#1E7A46">پیش‌فرض</span>
+        </div>
+        <div class="radio">
+          <span>🏢 محل کار — تهران، سعادت‌آباد، میدان کاج، برج B — ۰۹۱۲۳۴۵۶۷۸۹</span>
+          <span style="font-size:11px;color:#7d8ea0">انتخاب</span>
+        </div>
+        <button class="addbtn" style="width:auto;padding:6px 18px;background:#eaf2f8;color:#1F4E79">+ افزودن آدرس جدید</button>
+      </div>
+      <div class="cbox">
+        <h3>🚚 روش ارسال</h3>
+        <div class="radio sel">
+          <span>📮 پست پیشتاز — ۲ تا ۴ روز کاری</span>
+          <span class="price">۴۵٬۰۰۰ تومان</span>
+        </div>
+        <div class="radio">
+          <span>🚚 تیپاکس — ۱ تا ۲ روز کاری</span>
+          <span class="price">۶۰٬۰۰۰ تومان</span>
+        </div>
+        <div class="radio">
+          <span>🛵 پیک موتوری (تهران) — همان روز</span>
+          <span class="price">۳۵٬۰۰۰ تومان</span>
+        </div>
+      </div>
+      <div class="cbox">
+        <h3>💳 روش پرداخت</h3>
+        <div class="radio sel">
+          <span>💠 پرداخت آنلاین (درگاه بانکی)</span>
+        </div>
+        <div class="radio">
+          <span>🧾 پرداخت با چک <span class="rnote">فقط مشتریان همکار</span></span>
+        </div>
+        <div style="font-size:11px;color:#7d8ea0;margin-top:4px">پرداخت در محل نداریم — سفارش پس از پرداخت وارد فرآیند می‌شود</div>
+      </div>
+    </div>
+    <aside class="summary">
+      <h3>🧺 خلاصه سفارش</h3>
+      <div class="sitem">
+        <span>قاب سیلیکونی Arc <span class="sub">رنگ: سرمه‌ای × ۲</span></span>
+        <span>۲۹۸٬۰۰۰</span>
+      </div>
+      <div class="sitem">
+        <span>گلس نانو <span class="sub">× ۱</span></span>
+        <span>۸۰٬۰۰۰</span>
+      </div>
+      <div class="sitem">
+        <span>کابل تایپ‌سی <span class="sub">× ۱</span></span>
+        <span>۱۲۰٬۰۰۰</span>
+      </div>
+      <div class="srow" style="margin-top:8px"><span>جمع اقلام</span><span>۴۹۸٬۰۰۰</span></div>
+      <div class="srow"><span>تخفیف</span><span style="color:#e11d48">−۵۰٬۰۰۰</span></div>
+      <div class="srow"><span>هزینه ارسال (پست)</span><span>۴۵٬۰۰۰</span></div>
+      <div class="coupon">
+        <input placeholder="کد تخفیف دارید؟">
+        <button>اعمال</button>
+      </div>
+      <div class="srow total"><span>مبلغ نهایی</span><span>۴۹۳٬۰۰۰ تومان</span></div>
+      <button class="paybtn" onclick="alert('اتصال به درگاه بانکی… (نمونه)')">💠 پرداخت و ثبت سفارش</button>
+      <div style="font-size:10.5px;color:#7d8ea0;text-align:center;margin-top:8px">پس از پرداخت موفق: کد سفارش + پیامک تأیید</div>
+    </aside>
+  </div>
+</div>
+
+<!-- ═══════════════ صفحه ۵: پنل مشتری ═══════════════ -->
+<div class="page hide" id="p5">
+  <div class="crumb">خانه ← حساب کاربری من</div>
+  <div class="panel">
+    <aside class="pmenu">
+      <a class="on">📊 داشبورد</a>
+      <a>📦 سفارش‌های من</a>
+      <a>📍 آدرس‌های من</a>
+      <a>❤️ علاقه‌مندی‌ها (۵)</a>
+      <a>💰 اعتبار من</a>
+      <a>👤 اطلاعات حساب</a>
+      <a class="out">خروج</a>
+    </aside>
+    <div class="pmain">
+      <div class="hello">
+        <h3>سلام، سارا جان 👋</h3>
+        <p>از آخرین خرید شما ۱۲ روز گذشته — تخفیف‌های جدید را از دست نده!</p>
+      </div>
+      <div class="stats">
+        <div class="stat"><span class="n">۲</span><span class="t">سفارش در جریان</span></div>
+        <div class="stat"><span class="n">۱۴</span><span class="t">مجموع سفارش‌ها</span></div>
+        <div class="stat"><span class="n">۰ تومان</span><span class="t">اعتبار خرید</span></div>
+        <div class="stat"><span class="n">۵</span><span class="t">علاقه‌مندی‌ها</span></div>
+      </div>
+      <div class="pcard2">
+        <h3>📦 سفارش‌های من</h3>
+        <table class="otable">
+          <tr><th>کد سفارش</th><th>تاریخ</th><th>مبلغ</th><th>وضعیت</th><th>کد رهگیری</th></tr>
+          <tr><td>SO-1405-0231</td><td>۱۴۰۵/۰۶/۲۸</td><td>۴۹۳٬۰۰۰</td><td><span class="status st-pack">در حال بسته‌بندی</span></td><td>—</td></tr>
+          <tr><td>SO-1405-0198</td><td>۱۴۰۵/۰۶/۱۵</td><td>۱٬۲۴۰٬۰۰۰</td><td><span class="status st-sent">ارسال‌شده</span></td><td>۲۴۵۶۸۹۷۵۳۱</td></tr>
+          <tr><td>SO-1405-0102</td><td>۱۴۰۵/۰۵/۳۰</td><td>۳۵۰٬۰۰۰</td><td><span class="status st-deliv">تحویل‌شده ✓</span></td><td>۲۴۵۶۱۲۰۹۸۷</td></tr>
+        </table>
+      </div>
+      <div class="pcard2">
+        <h3>جزییات سفارش SO-1405-0231 — وضعیت فعلی</h3>
+        <div class="tl">
+          <div class="tli done"><span class="b">✓</span><div><div class="tt">ثبت سفارش</div><div class="td">۱۴۰۵/۰۶/۲۸ — ۱۰:۲۴</div></div></div>
+          <div class="tli done"><span class="b">✓</span><div><div class="tt">پرداخت آنلاین تأیید شد</div><div class="td">۱۴۰۵/۰۶/۲۸ — ۱۰:۲۵</div></div></div>
+          <div class="tli done"><span class="b">✓</span><div><div class="tt">تأیید فروشگاه</div><div class="td">۱۴۰۵/۰۶/۲۸ — ۱۱:۰۲ (پیامک ارسال شد)</div></div></div>
+          <div class="tli now"><span class="b">⏳</span><div><div class="tt">در حال بسته‌بندی</div><div class="td">در حال انجام…</div></div></div>
+          <div class="tli"><span class="b">۳</span><div><div class="tt">ارسال‌شده</div><div class="td">در انتظار</div></div></div>
+          <div class="tli"><span class="b">۴</span><div><div class="tt">تحویل‌شده</div><div class="td">در انتظار</div></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ صفحه ۶: ورود و صفحات کمکی ═══════════════ -->
+<div class="page hide" id="p6">
+  <div class="crumb">خانه ← ورود / ثبت‌نام</div>
+  <div class="auth">
+    <div class="acard">
+      <h3>ورود به حساب کاربری</h3>
+      <div class="hint">با شماره موبایل خود وارد شوید</div>
+      <label>شماره موبایل</label>
+      <input placeholder="۰۹۱۲۳۴۵۶۷۸۹">
+      <label>رمز عبور</label>
+      <input type="password" placeholder="••••••••">
+      <button class="abtn">ورود</button>
+      <div class="alink">رمز عبور را فراموش کرده‌اید؟</div>
+      <div class="otp">📩 راه دوم: <b>ورود با کد یکبار‌مصرف پیامکی</b> — بدون رمز عبور</div>
+    </div>
+    <div class="acard">
+      <h3>ثبت‌نام مشتری جدید</h3>
+      <div class="hint">حساب کاربری خود را بسازید — خرید بعدی بدون واردکردن اطلاعات</div>
+      <label>نام و نام خانوادگی</label>
+      <input placeholder="نام کامل">
+      <label>شماره موبایل</label>
+      <input placeholder="۰۹۱۲۳۴۵۶۷۸۹">
+      <label>کد ملی (کلید یکتای حساب)</label>
+      <input placeholder="کد ملی ۱۰ رقمی">
+      <label>رمز عبور</label>
+      <input type="password" placeholder="••••••••">
+      <button class="abtn">ثبت‌نام</button>
+      <div class="otp">سپس: واردکردن کد پیامکی ارسال‌شده ← حساب فعال می‌شود</div>
+    </div>
+  </div>
+  <div class="acard" style="margin-top:14px;background:#eaf2f8;border-color:#d3e2ef">
+    <h3>🤝 درخواست همکاری (عمده‌خرها)</h3>
+    <div style="font-size:12px;color:#41546b">اگر همکار هستید، بعد از ثبت‌نام معمولی، درخواست همکاری بدهید — پس از بررسی و تأیید <b>مدیر</b>، قیمت‌های همکاری برای شما فعال می‌شود و می‌توانید با چک هم پرداخت کنید.</div>
+    <button class="abtn" style="width:auto;padding:7px 20px;background:#B35C00">ثبت درخواست همکاری</button>
+  </div>
+  <div class="sec"><h2>صفحات کمکی سایت</h2></div>
+  <div class="minis">
+    <div class="mini"><span class="em">❓</span><b>سوالات متداول</b><p>پاسخ پرتکرارترین سؤال‌های مشتریان</p></div>
+    <div class="mini"><span class="em">📖</span><b>راهنمای خرید</b><p>مرحله‌به‌مرحله ثبت سفارش</p></div>
+    <div class="mini"><span class="em">↩️</span><b>راهنمای مرجوعی</b><p>شرایط و مراحل بازگشت کالا</p></div>
+    <div class="mini"><span class="em">⚖️</span><b>قوانین و مقررات</b><p>قوانین خرید و حریم خصوصی</p></div>
+    <div class="mini"><span class="em">ℹ️</span><b>درباره ما</b><p>معرفی فروشگاه و تماس با ما</p></div>
+    <div class="mini"><span class="em">🧭</span><b>صفحه ۴۰۴</b><p>«صفحه پیدا نشد» + راهنمای بازگشت</p></div>
+  </div>
+</div>
+
+</main>
+
+<!-- ═══════ فوتر مشترک ═══════ -->
+<footer>
+  <div class="wrap">
+    <div class="fgrid">
+      <div>
+        <h4>📱 تک‌شاپ</h4>
+        <p style="font-size:11.5px;line-height:2">فروشگاه تخصصی لوازم موبایل و تبلت.<br>اصالت کالا، قیمت منصفانه و ارسال سریع.</p>
+      </div>
+      <div>
+        <h4>راهنما</h4>
+        <ul>
+          <li>راهنمای خرید</li>
+          <li>شرایط مرجوعی و بازگشت</li>
+          <li>سوالات متداول</li>
+          <li>قوانین و مقررات</li>
+        </ul>
+      </div>
+      <div>
+        <h4>تماس با ما</h4>
+        <ul>
+          <li>☎️ ۰۲۱-۱۲۳۴۵۶۷۸</li>
+          <li>📍 تهران، خیابان ولیعصر</li>
+          <li>🕘 شنبه تا پنجشنبه ۹–۱۸</li>
+        </ul>
+      </div>
+      <div>
+        <h4>اعتماد شما</h4>
+        <div class="ftrust">
+          <div class="fbox">🛡️<br>نماد اعتماد<br>الکترونیکی (اینماد)</div>
+          <div class="fbox">📋<br>نماد ساماندهی</div>
+        </div>
+      </div>
+    </div>
+    <div class="copy">© ۱۴۰۵ تک‌شاپ — کلیه حقوق محفوظ است | این صفحه یک ماکاپ نمایشی برای تعریف اجزای بصری سایت است</div>
+  </div>
+</footer>
+
+<script>
+function pg(id,el){
+  document.querySelectorAll('.page').forEach(function(p){p.classList.add('hide')});
+  document.getElementById(id).classList.remove('hide');
+  document.querySelectorAll('.tb').forEach(function(b){b.classList.remove('on')});
+  el.classList.add('on');
+  window.scrollTo(0,0);
+}
+function pt(id,el){
+  document.querySelectorAll('.pbody').forEach(function(p){p.classList.add('hide')});
+  document.getElementById(id).classList.remove('hide');
+  document.querySelectorAll('.ptb').forEach(function(b){b.classList.remove('on')});
+  el.classList.add('on');
+}
+function sw(el){
+  document.querySelectorAll('.swatch').forEach(function(s){s.classList.remove('sel')});
+  el.classList.add('sel');
+  var stock=el.dataset.stock==='۰'?'ناموجود — اطلاع‌رسانی موجود شدن':el.dataset.stock+' عدد موجود';
+  document.getElementById('clrname').innerText='رنگ: '+el.dataset.name+' — '+stock;
+}
+</script>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a3bde6cba897f00c',t:'MTc4OTU0MTA1NQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v31edd6df95cf4e85bb4c19e7a9bdbcba1788362987495" integrity="sha512-iIg7k2xntmwu6/uSb5tpc/hySgZc4eoL31yB29W6tJFo2akwjPWcEqnCEdJvGexCL0KEQwVYv5BlowfhVz26hg==" data-cf-beacon='{"version":"2024.11.0","token":"1954b47c125f43f8b4338b3c4f804e4f","spa":2}' crossorigin="anonymous"></script>
+</body>
+</html>

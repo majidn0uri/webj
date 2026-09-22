@@ -1,0 +1,1716 @@
+/* ---------- ۱) نشانه‌ها (Tokens) ---------- */
+:root {
+  /* صورتی و بنفشِ نمونه؛ صورتی کمی تیره‌تر برای خوانایی روی سفید. */
+  --st-brand: #d92d50;
+  --st-brand-600: #bd2041;
+  --st-brand-700: #9f1c3a;
+  --st-brand-50: #fdf2f7;
+  --st-brand-100: #f9e3ef;
+
+  /* تأکید: بنفش */
+  --st-accent: #a855f7;
+  --st-accent-soft: #f5efff;
+
+  /* معنایی */
+  --st-deal: #E11D48;
+  --st-deal-soft: #FFF0F3;
+  --st-ok: #16A34A;
+  --st-ok-soft: #ECFDF5;
+  --st-info: #2563EB;
+  --st-info-soft: #EFF6FF;
+  --st-err: #DC2626;
+  --st-err-soft: #FEF2F2;
+
+  /* خنثی — روشن، مایل به بنفش */
+  --st-0: #FFFFFF;
+  --st-50: #fdf6fa;
+  --st-100: #f6f0f8;
+  --st-200: #ece5f0;
+  --st-300: #d9cde3;
+  --st-400: #94869f;
+  --st-500: #756780;
+  --st-600: #62516f;
+  --st-700: #463254;
+  --st-800: #2d183e;
+  --st-900: #241239;
+
+  /* فاصله */
+  --st-1: 4px;
+  --st-2: 8px;
+  --st-3: 12px;
+  --st-4: 16px;
+  --st-5: 20px;
+  --st-6: 24px;
+  --st-7: 32px;
+  --st-8: 40px;
+  --st-9: 56px;
+
+  /* شعاع — گردتر، مدرن‌تر */
+  --st-r-xs: 6px;
+  --st-r-sm: 10px;
+  --st-r-md: 14px;
+  --st-r-lg: 20px;
+  --st-r-pill: 999px;
+
+  /* سایه — نرم */
+  --st-shadow-1: 0 2px 8px rgba(217, 45, 80, 0.06), 0 1px 3px rgba(36, 18, 57, 0.04);
+  --st-shadow-2: 0 4px 16px rgba(217, 45, 80, 0.10), 0 2px 6px rgba(36, 18, 57, 0.05);
+  --st-shadow-3: 0 12px 40px rgba(217, 45, 80, 0.15), 0 4px 12px rgba(36, 18, 57, 0.08);
+  --st-shadow-brand: 0 6px 24px rgba(217, 45, 80, 0.35);
+
+  /* عرض مرجع نمونه: ۱۳۲۰ پیکسل */
+  --st-header-h: 78px;
+  --st-nav-h: 44px;
+  --st-container: 1320px;
+
+  /* قلم */
+  --st-font: 'Vazirmatn', 'IRANYekan', 'IRANSansX', Tahoma, system-ui, sans-serif;
+}
+
+/* ---------- ۲) پایه ---------- */
+.st {
+  font-family: var(--st-font);
+  color: var(--st-800);
+  background: var(--st-50);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+.st * { box-sizing: border-box; }
+.st a { color: inherit; text-decoration: none; }
+.st img { display: block; max-width: 100%; }
+.st button { font-family: inherit; }
+
+.container-x {
+  width: 100%;
+  max-width: var(--st-container);
+  margin-inline: auto;
+  padding-inline: var(--st-4);
+}
+@media (min-width: 1024px) { .container-x { padding-inline: var(--st-5); } }
+@media (min-width: 1280px) { .container-x { padding-inline: 20px; } }
+
+.num { font-variant-numeric: tabular-nums; font-feature-settings: 'ss01'; }
+
+/* ---------- ۳) نوارِ بالا (Header) ---------- */
+.hdr {
+  position: sticky;
+  top: 0;
+  z-index: 60;
+  background: var(--st-0);
+  box-shadow: 0 2px 12px rgba(217, 45, 80, 0.08);
+  border-bottom: 1px solid var(--st-100);
+}
+.hdr__row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  height: var(--st-header-h);
+}
+.hdr__logo {
+  display: flex; align-items: center; gap: 10px;
+  font-size: 19px; font-weight: 800; letter-spacing: -0.02em;
+  color: var(--st-brand);
+  flex: 0 0 auto; line-height: 1;
+}
+.hdr__logo-mark {
+  width: 34px; height: 34px; border-radius: 9px;
+  background: linear-gradient(135deg, #d92d50 0%, #a855f7 100%);
+  color: #fff; display: grid; place-items: center;
+  font-size: 14px; font-weight: 800;
+  box-shadow: 0 3px 12px rgba(217,45,80,0.22);
+}
+.hdr__search { flex: 1 1 auto; max-width: 560px; position: relative; min-width: 0; }
+.hdr__actions { display: flex; align-items: center; gap: 8px; flex: 0 0 auto; }
+
+.searchbox { position: relative; display: block; }
+.searchbox__input {
+  width: 100%;
+  height: 44px;
+  padding: 0 44px 0 44px;
+  border: 2px solid var(--st-200);
+  border-radius: var(--st-r-pill);
+  background: var(--st-50);
+  font-family: inherit;
+  font-size: 1.3rem;
+  color: var(--st-800);
+  outline: none;
+  transition: background-color 200ms ease, border-color 200ms ease, box-shadow 200ms ease;
+}
+.searchbox__input::placeholder { color: var(--st-400); }
+.searchbox__input:focus {
+  background: var(--st-0);
+  border-color: var(--st-brand);
+  box-shadow: 0 0 0 4px rgba(217, 45, 80, 0.12);
+}
+.searchbox__icon {
+  position: absolute; top: 50%; right: 14px; transform: translateY(-50%);
+  color: var(--st-400); pointer-events: none; display: flex;
+}
+.searchbox__hint {
+  position: absolute; top: 50%; left: 12px; transform: translateY(-50%);
+  font-size: 1.05rem; color: var(--st-400);
+  border: 1px solid var(--st-300); border-radius: var(--st-r-xs);
+  padding: 1px 6px; pointer-events: none;
+}
+@media (max-width: 767px) { .searchbox__hint { display: none; } }
+
+.sugg {
+  position: absolute; inset-inline: 0; top: calc(100% + 8px);
+  background: var(--st-0); border: 1px solid var(--st-200);
+  border-radius: var(--st-r-md); box-shadow: var(--st-shadow-3);
+  overflow: hidden; z-index: 70; text-align: right;
+}
+.sugg__item {
+  display: flex; align-items: center; gap: var(--st-3);
+  padding: var(--st-3) var(--st-4); font-size: 1.3rem; cursor: pointer;
+  border-bottom: 1px solid var(--st-100);
+  transition: background 150ms ease;
+}
+.sugg__item:last-child { border-bottom: none; }
+.sugg__item:hover, .sugg__item[data-active='true'] { background: var(--st-brand-50); }
+.sugg__meta { margin-inline-start: auto; color: var(--st-500); font-size: 1.15rem; }
+
+/* دکمه‌هایِ نوار */
+.iconbtn {
+  display: inline-flex; align-items: center; gap: var(--st-2);
+  height: 44px; padding-inline: var(--st-3);
+  border: 2px solid var(--st-200); border-radius: var(--st-r-pill);
+  background: var(--st-0); color: var(--st-700);
+  font-size: 1.3rem; cursor: pointer;
+  transition: all 180ms ease;
+}
+.iconbtn:hover {
+  background: var(--st-brand-50);
+  border-color: var(--st-brand);
+  color: var(--st-brand);
+}
+.iconbtn--cart { position: relative; }
+.cartcount {
+  position: absolute; top: -6px; right: -6px; min-width: 20px; height: 20px;
+  padding-inline: 5px; border-radius: var(--st-r-pill);
+  background: linear-gradient(135deg, #E11D48, #FF6B6B);
+  color: #fff;
+  font-size: 1.05rem; font-weight: 700; display: grid; place-items: center;
+  border: 2px solid var(--st-0);
+  box-shadow: 0 2px 8px rgba(225, 29, 72, 0.4);
+}
+
+/* ردیفِ دوم: دسته‌بندی */
+.hdr__nav {
+  display: flex; align-items: center; gap: var(--st-2);
+  height: var(--st-nav-h);
+  border-top: 1px solid var(--st-100);
+  overflow-x: auto; scrollbar-width: none;
+}
+.hdr__nav::-webkit-scrollbar { display: none; }
+.navlink {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 6px var(--st-3); border-radius: var(--st-r-pill);
+  font-size: 1.25rem; color: var(--st-600); white-space: nowrap;
+  transition: all 180ms ease;
+}
+.navlink:hover {
+  color: var(--st-brand);
+  background: var(--st-brand-50);
+}
+.navlink--cats { font-weight: 700; color: var(--st-800); }
+.navsep { width: 1px; height: 18px; background: var(--st-200); flex: 0 0 auto; }
+@media (max-width: 767px) { .hdr__nav { display: none; } }
+
+.mega { position: relative; }
+.mega__panel {
+  position: absolute; top: 100%; right: 0; z-index: 80;
+  display: grid; grid-auto-flow: column; grid-template-rows: repeat(7, auto);
+  gap: 0 var(--st-7);
+  min-width: 640px;
+  padding: var(--st-5);
+  background: var(--st-0); border: 1px solid var(--st-200);
+  border-radius: var(--st-r-md); box-shadow: var(--st-shadow-3);
+}
+.mega__col { display: flex; flex-direction: column; gap: 2px; min-width: 190px; }
+.mega__head {
+  font-size: 1.2rem; font-weight: 700; color: var(--st-800);
+  padding: var(--st-2) var(--st-1); border-bottom: 2px solid var(--st-brand-100);
+  margin-bottom: var(--st-2);
+}
+.mega__link {
+  padding: 6px var(--st-1); border-radius: var(--st-r-xs);
+  font-size: 1.2rem; color: var(--st-600);
+  transition: all 150ms ease;
+}
+.mega__link:hover { background: var(--st-brand-50); color: var(--st-brand); }
+
+/* ---------- ۴) قهرمان (Hero) — گرادیانِ برند — ارتفاعِ کنترل‌شده ---------- */
+.hero {
+  position: relative;
+  margin-top: 14px;
+  border-radius: 20px;
+  overflow: hidden;
+  background:
+    radial-gradient(900px 420px at 85% -10%, #FFB366 0%, transparent 58%),
+    linear-gradient(120deg, #9f1c3a 0%, #d92d50 42%, #a855f7 100%);
+  color: #fff;
+  box-shadow: 0 8px 32px rgba(217, 45, 80, 0.20);
+}
+.hero__grid {
+  display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 24px;
+  align-items: center; padding: 32px 28px;
+  min-height: 0;
+}
+.hero__title { font-size: 24px; line-height: 1.5; font-weight: 800; margin: 0 0 10px; letter-spacing: -0.015em; }
+.hero__sub { font-size: 13.5px; line-height: 1.9; margin: 0 0 18px; color: rgba(255,255,255,0.92); max-width: 52ch; }
+.hero__panel {
+  background: rgba(255,255,255,0.18);
+  border: 1px solid rgba(255,255,255,0.3);
+  backdrop-filter: blur(12px);
+  border-radius: var(--st-r-md);
+  padding: var(--st-5);
+}
+.hero__label { font-size: 1.3rem; font-weight: 700; margin-bottom: var(--st-3); }
+.hero__chips { display: flex; flex-wrap: wrap; gap: var(--st-2); }
+.hero__chip {
+  background: rgba(255,255,255,0.95); color: var(--st-brand-700);
+  border: none; border-radius: var(--st-r-pill);
+  padding: 8px var(--st-4); font-size: 1.25rem; font-weight: 700;
+  cursor: pointer; transition: all 180ms ease;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+.hero__chip:hover { transform: translateY(-2px); background: #fff; box-shadow: 0 4px 16px rgba(0,0,0,0.15); }
+.hero__stat {
+  position: absolute; bottom: var(--st-5); left: var(--st-5);
+  background: #fff; color: var(--st-800);
+  border-radius: var(--st-r-md); padding: var(--st-3) var(--st-5);
+  box-shadow: var(--st-shadow-3); font-size: 1.25rem; font-weight: 700;
+}
+@media (max-width: 900px) {
+  .hero__grid { grid-template-columns: 1fr; padding: var(--st-5); }
+  .hero__title { font-size: 2.4rem; }
+  .hero__stat { position: static; margin: var(--st-4) var(--st-5) var(--st-5); display: inline-block; }
+}
+
+/* ---------- ۵) نوارِ اعتماد — اندازه‌یِ برابر، ترازِ افقی ---------- */
+.trust {
+  display: grid; grid-template-columns: repeat(4, minmax(0,1fr));
+  gap: 12px; margin-top: 16px;
+  border: 1px solid var(--st-200); border-radius: 14px;
+  background: var(--st-0);
+  padding: 12px;
+  box-shadow: var(--st-shadow-1);
+}
+.trust__item {
+  display: flex; align-items: center; gap: 12px;
+  padding: 12px 14px; min-height: 72px;
+  border-radius: 10px; border: 1px solid transparent;
+  transition: all 180ms ease;
+}
+.trust__item:hover { background: var(--st-brand-50); border-color: var(--st-brand-100); }
+.trust__icon {
+  width: 42px; height: 42px; border-radius: 10px;
+  background: linear-gradient(135deg, var(--st-brand-50), #FFF0E5);
+  color: var(--st-brand);
+  display: grid; place-items: center; flex: 0 0 42px;
+  box-shadow: 0 2px 8px rgba(217, 45, 80, 0.08);
+}
+.trust__t { font-size: 12.5px; font-weight: 800; color: var(--st-800); line-height: 1.3; }
+.trust__d { font-size: 11px; color: var(--st-500); line-height: 1.6; margin-top: 2px; }
+@media (max-width: 900px) { .trust { grid-template-columns: repeat(2, minmax(0,1fr)); } }
+@media (max-width: 480px) { .trust { grid-template-columns: 1fr; } }
+
+/* ---------- ۶) بخش‌ها و ریل‌ها — عنوان و لینک هم‌تراز ---------- */
+.sect { margin-top: 36px; }
+.sect__head {
+  display: flex; align-items: flex-end; justify-content: space-between; gap: 12px;
+  margin-bottom: 14px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--st-200);
+}
+.sect__title {
+  font-size: 17px; font-weight: 800; color: var(--st-800); margin: 0; line-height: 1.2;
+  padding-bottom: 6px; border-bottom: 3px solid var(--st-brand); margin-bottom: -11px;
+  letter-spacing: -0.01em;
+}
+.sect__more { font-size: 12.5px; color: var(--st-brand); font-weight: 700; white-space: nowrap; line-height: 1; padding: 4px 0; }
+.sect__more:hover { text-decoration: underline; }
+
+/* شبکه‌ی کالا — گریدِ ترازِ ۱۶px، کارت‌هایِ هم‌قد */
+.grid-p { display: grid; gap: 14px; grid-template-columns: repeat(2, minmax(0,1fr)); align-items: stretch; grid-auto-rows: 1fr; }
+@media (min-width: 640px) { .grid-p { grid-template-columns: repeat(3, minmax(0,1fr)); gap: 16px; } }
+@media (min-width: 1024px) { .grid-p { grid-template-columns: repeat(4, minmax(0,1fr)); gap: 18px; } }
+@media (min-width: 1280px) { .grid-p { grid-template-columns: repeat(4, minmax(0,1fr)); } }
+
+/* ---------- ۷) کارتِ کالا — هم‌قد، ترازِ ثابتِ قیمت و دکمه ---------- */
+.card-p {
+  position: relative; display: flex; flex-direction: column;
+  background: var(--st-0); border: 1px solid var(--st-200);
+  border-radius: 14px; overflow: hidden;
+  transition: all 220ms cubic-bezier(0.4, 0, 0.2, 1);
+  height: 100%; min-height: 0;
+}
+.card-p:hover {
+  box-shadow: 0 8px 28px rgba(217, 45, 80, 0.11), 0 2px 10px rgba(36, 18, 57, 0.05);
+  border-color: #f0d8cc;
+  transform: translateY(-3px);
+}
+.card-p__media {
+  position: relative; aspect-ratio: 1 / 1;
+  background: linear-gradient(135deg, var(--st-50), var(--st-100));
+  overflow: hidden; flex: 0 0 auto;
+}
+.card-p__img { width: 100%; height: 100%; object-fit: cover; transition: transform 500ms cubic-bezier(0.4, 0, 0.2, 1); display: block; }
+.card-p:hover .card-p__img { transform: scale(1.05); }
+.card-p__ph {
+  width: 100%; height: 100%; display: grid; place-items: center;
+  color: var(--st-400); font-size: 1.2rem; text-align: center; padding: var(--st-3);
+  background: linear-gradient(135deg, var(--st-50), var(--st-100));
+}
+.card-p__badge {
+  position: absolute; top: 8px; right: 8px;
+  background: linear-gradient(135deg, #E11D48, #FF6B6B);
+  color: #fff;
+  border-radius: 999px; padding: 3px 8px;
+  font-size: 11px; font-weight: 800; line-height: 1;
+  box-shadow: 0 2px 8px rgba(225, 29, 72, 0.3);
+}
+.card-p__body { padding: 12px 12px 10px; display: flex; flex-direction: column; gap: 8px; flex: 1 1 auto; min-height: 0; }
+.card-p__title {
+  font-size: 13px; font-weight: 500; color: var(--st-700); line-height: 1.8;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+  min-height: 46px; max-height: 46px; word-break: break-word;
+}
+.card-p__meta { display: flex; align-items: center; gap: 8px; font-size: 11px; color: var(--st-500); min-height: 16px; line-height: 1; }
+.card-p__meta-ph { opacity: 0; pointer-events: none; }
+.card-p__brand { font-size: 11px; color: var(--st-500); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 90px; }
+.card-p__brand--empty { opacity: 0; }
+.card-p__foot {
+  margin-top: auto; display: flex; align-items: center; justify-content: space-between; gap: 8px;
+  padding-top: 10px; border-top: 1px solid var(--st-100); min-height: 52px;
+}
+.card-p__price { display: flex; flex-direction: column; gap: 2px; min-width: 0; flex: 1; }
+.card-p__stock { font-size: 11px; line-height: 1; font-weight: 600; white-space: nowrap; min-height: 13px; }
+.card-p__stock--out { color: var(--st-err); }
+.card-p__stock--low { color: #92400e; }
+.card-p__stock--ok { color: var(--st-500); }
+.card-p__actions { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; flex: 0 0 auto; }
+.card-p__btns { display: flex; align-items: center; gap: 6px; }
+.card-p__quick {
+  width: 36px; height: 36px; border-radius: var(--st-r-sm);
+  border: none;
+  background: linear-gradient(135deg, var(--st-brand), var(--st-brand-600));
+  color: #fff;
+  display: grid; place-items: center; cursor: pointer; flex: 0 0 auto;
+  opacity: 0; transform: translateY(6px) scale(0.9);
+  transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: var(--st-shadow-brand);
+}
+.card-p:hover .card-p__quick { opacity: 1; transform: translateY(0) scale(1); }
+.card-p__quick:hover {
+  background: linear-gradient(135deg, var(--st-brand-600), var(--st-brand-700));
+  transform: scale(1.08) !important;
+}
+@media (hover: none) { .card-p__quick { opacity: 1; transform: none; } }
+
+/* بلوکِ قیمت — خطِ پایه‌یِ ثابت */
+.price { display: flex; align-items: baseline; gap: 5px; flex-wrap: wrap; line-height: 1; }
+.price__value { font-size: 15px; font-weight: 800; color: var(--st-900); line-height: 1; letter-spacing: -0.02em; }
+.price__unit { font-size: 11px; color: var(--st-500); font-weight: 600; }
+.price__old { font-size: 11.5px; color: var(--st-400); text-decoration: line-through; font-weight: 500; }
+.price--lg .price__value { font-size: 22px; }
+.price--lg .price__unit { font-size: 13px; }
+
+/* ---------- ۸) دکمه‌ها — گرم با گرادیان ---------- */
+.btn-p {
+  display: inline-flex; align-items: center; justify-content: center; gap: var(--st-2);
+  height: 44px; padding-inline: var(--st-5);
+  border-radius: var(--st-r-pill); border: none;
+  font-size: 1.4rem; font-weight: 700; cursor: pointer;
+  transition: all 180ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.btn-p:active { transform: scale(0.97); }
+.btn-p--primary {
+  background: linear-gradient(135deg, var(--st-brand), var(--st-brand-600));
+  color: #fff; box-shadow: var(--st-shadow-brand);
+}
+.btn-p--primary:hover {
+  background: linear-gradient(135deg, var(--st-brand-600), var(--st-brand-700));
+  box-shadow: 0 8px 28px rgba(217, 45, 80, 0.4);
+  transform: translateY(-1px);
+}
+.btn-p--outline {
+  background: var(--st-0);
+  border: 2px solid var(--st-300);
+  color: var(--st-700);
+}
+.btn-p--outline:hover {
+  border-color: var(--st-brand);
+  color: var(--st-brand);
+  background: var(--st-brand-50);
+}
+.btn-p--ghost { background: transparent; color: var(--st-600); }
+.btn-p--ghost:hover { background: var(--st-100); }
+.btn-p--block { width: 100%; }
+.btn-p--lg { height: 52px; font-size: 1.6rem; }
+.btn-p:disabled { opacity: 0.55; cursor: not-allowed; box-shadow: none; }
+
+/* ---------- ۹) نشان‌ها و چیپ‌ها ---------- */
+.chip {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 6px var(--st-3); border-radius: var(--st-r-pill);
+  border: 2px solid var(--st-200); background: var(--st-0);
+  font-size: 1.25rem; color: var(--st-700); cursor: pointer;
+  transition: all 180ms ease; white-space: nowrap;
+}
+.chip:hover { border-color: var(--st-brand); color: var(--st-brand); background: var(--st-brand-50); }
+.chip[aria-pressed='true'], .chip--on {
+  background: linear-gradient(135deg, var(--st-brand), var(--st-brand-600));
+  border-color: var(--st-brand); color: #fff; font-weight: 700;
+  box-shadow: 0 2px 8px rgba(217, 45, 80, 0.25);
+}
+.tag {
+  display: inline-flex; align-items: center; gap: 4px;
+  padding: 2px var(--st-2); border-radius: var(--st-r-xs);
+  font-size: 1.15rem; font-weight: 700;
+}
+.tag--ok { background: var(--st-ok-soft); color: var(--st-ok); }
+.tag--brand { background: var(--st-brand-50); color: var(--st-brand); }
+.tag--warn { background: var(--st-accent-soft); color: #92400E; }
+.tag--err { background: var(--st-err-soft); color: var(--st-err); }
+
+/* ---------- ۱۰) ستاره‌ها ---------- */
+.stars { display: inline-flex; gap: 2px; color: var(--st-accent); }
+.stars__off { color: var(--st-300); }
+
+/* ---------- ۱۱) صفحه‌ی کالا ---------- */
+.pdp { display: grid; grid-template-columns: minmax(0, 1fr) 380px; gap: var(--st-6); }
+@media (max-width: 1023px) { .pdp { grid-template-columns: 1fr; } }
+.pdp__gallery { display: grid; gap: var(--st-3); }
+.pdp__main {
+  border-radius: var(--st-r-lg); overflow: hidden;
+  background: linear-gradient(135deg, var(--st-50), var(--st-100));
+  border: 1px solid var(--st-200); aspect-ratio: 1 / 1;
+}
+.pdp__main img { width: 100%; height: 100%; object-fit: cover; }
+.pdp__thumbs { display: flex; gap: var(--st-2); }
+.pdp__thumb {
+  width: 76px; height: 76px; border-radius: var(--st-r-sm); overflow: hidden;
+  border: 2px solid var(--st-200); background: var(--st-50); cursor: pointer; padding: 0;
+  transition: all 180ms ease;
+}
+.pdp__thumb:hover { border-color: var(--st-brand); }
+.pdp__thumb[aria-current='true'] {
+  border-color: var(--st-brand);
+  box-shadow: 0 0 0 2px rgba(217, 45, 80, 0.2);
+}
+.pdp__buy {
+  position: sticky; top: calc(var(--st-header-h) + var(--st-nav-h) + var(--st-4));
+  border: 1px solid var(--st-200); border-radius: var(--st-r-md);
+  padding: var(--st-5); background: var(--st-0);
+  box-shadow: var(--st-shadow-2);
+}
+.spec { width: 100%; border-collapse: collapse; font-size: 1.3rem; }
+.spec td { padding: var(--st-3) var(--st-2); border-bottom: 1px solid var(--st-100); }
+.spec td:first-child { color: var(--st-500); width: 34%; }
+.spec td:last-child { color: var(--st-800); font-weight: 500; }
+
+/* ---------- ۱۲) فیلترها ---------- */
+.filters__side { position: sticky; top: calc(var(--st-header-h) + var(--st-nav-h) + var(--st-4)); }
+.filter-group { border-bottom: 1px solid var(--st-100); padding-block: var(--st-4); }
+.filter-group__t { font-size: 1.3rem; font-weight: 700; margin-bottom: var(--st-3); color: var(--st-800); }
+.filter-list { display: flex; flex-direction: column; gap: var(--st-2); max-height: 260px; overflow-y: auto; }
+.filter-item { display: flex; align-items: center; gap: var(--st-2); font-size: 1.25rem; color: var(--st-700); cursor: pointer; }
+.filter-item input { accent-color: var(--st-brand); width: 16px; height: 16px; }
+.filter-count { margin-inline-start: auto; color: var(--st-400); font-size: 1.1rem; }
+
+/* ---------- ۱۳) پانویس (Footer) — گرم ---------- */
+.ftr {
+  margin-top: var(--st-9);
+  background: linear-gradient(180deg, var(--st-50), #F3EDE6);
+  border-top: 1px solid var(--st-200);
+}
+.ftr__top { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--st-6); padding-block: var(--st-7); }
+@media (max-width: 900px) { .ftr__top { grid-template-columns: 1fr 1fr; } }
+.ftr__h { font-size: 1.4rem; font-weight: 800; color: var(--st-800); margin-bottom: var(--st-3); }
+.ftr__list { display: flex; flex-direction: column; gap: var(--st-2); font-size: 1.25rem; color: var(--st-600); }
+.ftr__list a:hover { color: var(--st-brand); }
+.ftr__bottom {
+  border-top: 1px solid var(--st-200); padding-block: var(--st-4);
+  display: flex; align-items: center; justify-content: space-between; gap: var(--st-3);
+  font-size: 1.2rem; color: var(--st-500); flex-wrap: wrap;
+}
+.ftr__badges { display: flex; gap: var(--st-2); }
+.ftr__badge {
+  border: 1px solid var(--st-300); border-radius: var(--st-r-sm);
+  padding: var(--st-2) var(--st-3); background: var(--st-0);
+  display: flex; align-items: center; gap: var(--st-2); color: var(--st-600);
+  transition: all 180ms ease;
+}
+.ftr__badge:hover { border-color: var(--st-brand); color: var(--st-brand); }
+
+/* ---------- ۱۴) نوارِ پایینِ موبایل ---------- */
+.tabbar {
+  position: fixed; bottom: 0; inset-inline: 0; z-index: 70;
+  display: none; background: var(--st-0);
+  border-top: 1px solid var(--st-200);
+  box-shadow: 0 -4px 16px rgba(217, 45, 80, 0.08);
+}
+@media (max-width: 767px) {
+  .tabbar { display: grid; grid-auto-flow: column; }
+  body { padding-bottom: 62px; }
+}
+.tabbar__item {
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px;
+  padding: 8px 0; font-size: 1.05rem; color: var(--st-500);
+  transition: color 180ms ease;
+}
+.tabbar__item[data-on='true'] {
+  color: var(--st-brand); font-weight: 700;
+}
+
+/* ---------- ۱۵) اسکلت و وضعیتِ خالی ---------- */
+.skel {
+  background: linear-gradient(90deg, var(--st-100) 25%, var(--st-50) 37%, var(--st-100) 63%);
+  background-size: 400% 100%; animation: skel 1.4s ease infinite; border-radius: var(--st-r-sm);
+}
+@keyframes skel { 0% { background-position: 100% 50%; } 100% { background-position: 0 50%; } }
+.empty { text-align: center; padding: var(--st-9) var(--st-4); color: var(--st-500); }
+.empty__t { font-size: 1.6rem; font-weight: 700; color: var(--st-700); margin-bottom: var(--st-2); }
+
+/* ---------- ۱۶) نان (Breadcrumb) ---------- */
+.crumbs { display: flex; align-items: center; gap: var(--st-1); font-size: 1.2rem; color: var(--st-500); flex-wrap: wrap; }
+.crumbs a:hover { color: var(--st-brand); }
+.crumbs__sep { color: var(--st-300); }
+
+/* ===========================================================================
+   ریلِ افقی و کارتِ برند
+   =========================================================================== */
+.rail {
+  display: flex;
+  gap: var(--st-3);
+  overflow-x: auto;
+  padding-bottom: var(--st-2);
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+}
+.rail::-webkit-scrollbar { height: 6px; }
+.rail::-webkit-scrollbar-thumb { background: var(--st-300); border-radius: 999px; }
+.rail__item {
+  flex: 0 0 auto;
+  width: 210px;
+  scroll-snap-align: start;
+}
+.rail__item .card-p { height: 100%; }
+@media (max-width: 767px) {
+  .rail__item { width: 168px; }
+  .rail { gap: var(--st-2); margin-inline: calc(var(--st-3) * -1); padding-inline: var(--st-3); }
+}
+
+.brands {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(148px, 1fr));
+  gap: 12px;
+}
+.brandcard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  min-height: 88px; height: 88px;
+  padding: 12px;
+  background: var(--st-0);
+  border: 1px solid var(--st-200);
+  border-radius: 12px;
+  text-decoration: none;
+  transition: all 200ms ease;
+}
+.brandcard:hover {
+  border-color: var(--st-brand);
+  box-shadow: 0 4px 16px rgba(217, 45, 80, 0.10);
+  transform: translateY(-2px);
+}
+.brandcard__name { font-weight: 800; color: var(--st-800); font-size: 13px; line-height: 1.2; text-align: center; }
+.brandcard__count { font-size: 11px; color: var(--st-500); line-height: 1; font-weight: 600; }
+
+/* ---------- مقایسه‌یِ کالا ---------- */
+.cmp {
+  overflow-x: auto;
+  border: 1px solid var(--st-200);
+  border-radius: var(--st-r-md);
+  background: var(--st-0);
+  -webkit-overflow-scrolling: touch;
+}
+.cmp__table { width: 100%; border-collapse: collapse; min-width: 620px; }
+.cmp__corner, .cmp__rowhead, .cmp__head, .cmp__cell { padding: var(--st-3) var(--st-4); }
+.cmp__rowhead {
+  position: sticky; right: 0; z-index: 2;
+  background: var(--st-50); border-bottom: 1px solid var(--st-200);
+  font-size: 1.25rem; font-weight: 700; color: var(--st-600);
+  text-align: right; min-width: 150px; white-space: nowrap;
+}
+.cmp__corner { position: sticky; right: 0; z-index: 3; background: var(--st-50); }
+.cmp__head {
+  border-bottom: 2px solid var(--st-300);
+  text-align: center; min-width: 190px; vertical-align: top;
+}
+.cmp__head-img {
+  width: 110px; height: 110px; object-fit: cover;
+  border-radius: var(--st-r-md); margin: 0 auto var(--st-3);
+  display: block; background: var(--st-50);
+}
+.cmp__head-title {
+  display: block; font-size: 1.3rem; font-weight: 700; line-height: 1.8;
+  color: var(--st-700); text-decoration: none;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+  min-height: 4.7rem;
+}
+.cmp__head-title:hover { color: var(--st-brand); }
+.cmp__head-brand { display: block; font-size: 1.15rem; color: var(--st-500); margin-bottom: var(--st-2); }
+.cmp__price { font-size: 1.7rem; font-weight: 800; color: var(--st-900); }
+.cmp__unit { font-size: 1.2rem; font-weight: 500; color: var(--st-500); }
+.cmp__head.is-best { background: var(--st-brand-50); }
+.cmp__head.is-best .cmp__price { color: var(--st-brand); }
+.cmp__cell {
+  border-bottom: 1px solid var(--st-200);
+  font-size: 1.3rem; color: var(--st-800); text-align: center;
+}
+tbody tr:last-child .cmp__cell, tbody tr:last-child .cmp__rowhead { border-bottom: 2px solid var(--st-300); }
+.cmp__models { list-style: none; margin: 0; padding: 0; font-size: 1.2rem; color: var(--st-700); }
+.cmp__models li { padding: 2px 0; }
+
+/* ---------- بزرگ‌نماییِ تصویر (نورباکس) ---------- */
+.pdp__zoom-cover {
+  position: relative; cursor: zoom-in;
+  display: block; width: 100%; border: none; padding: 0; background: none;
+  border-radius: var(--st-r-lg); overflow: hidden;
+}
+.pdp__zoom-cover img { display: block; width: 100%; height: auto; aspect-ratio: 1; object-fit: cover; }
+.pdp__zoom-cover::after {
+  content: ''; position: absolute; bottom: 8px; left: 8px;
+  width: 36px; height: 36px; border-radius: 50%;
+  background: rgba(0,0,0,.55) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='8' cy='8' r='6'/%3E%3Cline x1='12.5' y1='12.5' x2='17' y2='17'/%3E%3Cline x1='5' y1='8' x2='11' y2='8'/%3E%3Cline x1='8' y1='5' x2='8' y2='11'/%3E%3C/svg%3E") center/18px no-repeat;
+  pointer-events: none; transition: opacity .15s;
+}
+.pdp__zoom-cover:hover::after { opacity: .85; }
+
+.lb {
+  position: fixed; inset: 0; z-index: 9999;
+  display: flex; flex-direction: column;
+  background: rgba(26, 22, 19, .92); backdrop-filter: blur(8px);
+  color: #fff; overflow: hidden;
+}
+.lb__bar {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: var(--st-3) var(--st-4); flex-shrink: 0;
+}
+.lb__pos { font-size: 1.3rem; font-weight: 600; opacity: .85; user-select: none; }
+.lb__close {
+  background: rgba(255,255,255,.12); border: none; border-radius: 50%;
+  width: 40px; height: 40px; cursor: pointer; color: #fff;
+  font-size: 2rem; display: grid; place-items: center;
+  transition: background .15s;
+}
+.lb__close:hover { background: rgba(255,255,255,.25); }
+.lb__arrow {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  background: rgba(255,255,255,.1); border: none; border-radius: 50%;
+  width: 48px; height: 48px; cursor: pointer; color: #fff;
+  font-size: 3rem; display: grid; place-items: center;
+  line-height: 1; transition: background .15s; z-index: 2;
+}
+.lb__arrow:hover { background: rgba(255,255,255,.25); }
+.lb__arrow--left  { left:  var(--st-3); }
+.lb__arrow--right { right: var(--st-3); }
+.lb__img-wrap {
+  flex: 1; display: grid; place-items: center;
+  overflow: hidden; padding: var(--st-2);
+  opacity: 0; transition: opacity .15s ease;
+  touch-action: pan-x pinch-zoom;
+}
+.lb__img-wrap.is-show { opacity: 1; }
+.lb__img {
+  max-width: 95vw; max-height: calc(100vh - 160px);
+  object-fit: contain; border-radius: var(--st-r-md);
+  user-select: none; -webkit-user-drag: none;
+}
+.lb__thumbs {
+  display: flex; gap: var(--st-2); padding: var(--st-2) var(--st-4) var(--st-4);
+  overflow-x: auto; -webkit-overflow-scrolling: touch; flex-shrink: 0;
+  scrollbar-width: none; justify-content: center;
+}
+.lb__thumbs::-webkit-scrollbar { display: none; }
+.lb__thumb {
+  flex-shrink: 0; width: 56px; height: 56px;
+  border: 2px solid transparent; border-radius: var(--st-r-md);
+  overflow: hidden; cursor: pointer; background: none; padding: 0;
+  transition: border-color .15s, transform .15s;
+}
+.lb__thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.lb__thumb.is-active { border-color: #fff; transform: scale(1.08); }
+.lb__thumb:hover:not(.is-active) { border-color: rgba(255,255,255,.5); }
+
+@media (max-width: 640px) {
+  .lb__arrow { width: 38px; height: 38px; font-size: 2.2rem; }
+  .lb__arrow--left  { left:  var(--st-2); }
+  .lb__arrow--right { right: var(--st-2); }
+  .lb__thumb { width: 46px; height: 46px; }
+}
+
+/* ---------- دیده‌شده‌هایِ اخیر ---------- */
+.rv__strip {
+  display: flex; gap: var(--st-3); padding: var(--st-2) 0 var(--st-1);
+  overflow-x: auto; -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.rv__strip::-webkit-scrollbar { display: none; }
+.rv__card {
+  flex-shrink: 0; width: 110px;
+  display: flex; flex-direction: column; align-items: center; gap: var(--st-1);
+  text-decoration: none; color: var(--st-800);
+  border: 1px solid var(--st-200); border-radius: var(--st-r-md);
+  padding: var(--st-2); background: var(--st-0);
+  transition: all 200ms ease;
+}
+.rv__card:hover {
+  border-color: var(--st-brand);
+  box-shadow: 0 4px 16px rgba(217, 45, 80, 0.1);
+  transform: translateY(-2px);
+}
+.rv__img {
+  width: 80px; height: 80px; object-fit: cover; border-radius: var(--st-r-sm);
+  background: var(--st-50); display: block; flex-shrink: 0;
+}
+.rv__ph { border: 1px dashed var(--st-300); }
+.rv__title {
+  font-size: 1.1rem; font-weight: 600; line-height: 1.8; color: var(--st-700);
+  text-align: center; display: -webkit-box; -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical; overflow: hidden; min-height: 3.6rem;
+}
+
+/* ---------- نمایشِ سریع (Quick View) ---------- */
+.card-p__qv {
+  position: absolute; bottom: var(--st-2); right: var(--st-2);
+  width: 36px; height: 36px; border-radius: 50%;
+  background: var(--st-0); border: 2px solid var(--st-300);
+  display: grid; place-items: center; cursor: pointer;
+  opacity: 0; transition: all 200ms ease;
+  color: var(--st-600); z-index: 2;
+}
+.card-p:hover .card-p__qv,
+.card-p__qv:focus-visible { opacity: 1; }
+.card-p__qv:hover {
+  background: linear-gradient(135deg, var(--st-brand), var(--st-brand-600));
+  color: #fff; border-color: var(--st-brand);
+}
+@media (max-width: 640px) { .card-p__qv { opacity: 1; } }
+
+.qv {
+  position: fixed; inset: 0; z-index: 9999;
+  display: grid; place-items: center;
+  background: rgba(26, 22, 19, .7); backdrop-filter: blur(6px);
+  padding: var(--st-4);
+}
+.qv__card {
+  background: var(--st-0); border-radius: var(--st-r-lg);
+  max-width: 640px; width: 100%; max-height: 90vh;
+  overflow-y: auto; box-shadow: 0 24px 80px rgba(217, 45, 80, 0.2);
+  display: flex; flex-direction: column;
+}
+.qv__head {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: var(--st-3) var(--st-4); border-bottom: 1px solid var(--st-200);
+}
+.qv__title { font-size: 1.5rem; font-weight: 700; color: var(--st-800); flex: 1; }
+.qv__close {
+  background: none; border: none; cursor: pointer; font-size: 1.8rem;
+  color: var(--st-500); padding: 4px 8px; border-radius: var(--st-r-sm);
+}
+.qv__close:hover { background: var(--st-100); color: var(--st-700); }
+.qv__body {
+  display: flex; gap: var(--st-4); padding: var(--st-4);
+}
+.qv__img-wrap { flex-shrink: 0; width: 220px; }
+.qv__img { width: 100%; height: auto; border-radius: var(--st-r-md); object-fit: cover; aspect-ratio: 1; }
+.qv__details { flex: 1; min-width: 0; }
+.qv__loading { padding: var(--st-8) var(--st-4); text-align: center; color: var(--st-500); font-size: 1.4rem; }
+@media (max-width: 640px) {
+  .qv__card { max-width: 100%; max-height: 95vh; border-radius: var(--st-r-lg) var(--st-r-lg) 0 0; align-self: end; }
+  .qv__body { flex-direction: column; }
+  .qv__img-wrap { width: 100%; }
+}
+
+/* ── پرسش و پاسخ ── */
+.qa__item {
+  border: 1px solid var(--st-200); border-radius: var(--st-r-md);
+  padding: var(--st-3); margin-bottom: var(--st-2);
+}
+.qa__q, .qa__a {
+  display: flex; gap: var(--st-2); align-items: flex-start;
+}
+.qa__q { margin-bottom: var(--st-2); }
+.qa__icon { font-size: 1.6rem; flex-shrink: 0; margin-top: 2px; }
+.qa__text { margin: 0; line-height: 1.8; font-size: 1.4rem; color: var(--st-700); }
+.qa__meta { font-size: 1.1rem; color: var(--st-400); margin-top: 2px; display: block; }
+.qa__a { padding-right: var(--st-1); border-right: 3px solid var(--st-ok); }
+.qa__form {
+  border: 1px solid var(--st-200); border-radius: var(--st-r-md);
+  padding: var(--st-3); background: var(--st-50);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   رسانه: کادرِ رها کردن و انگشتانه‌ها
+   ═══════════════════════════════════════════════════════════════════════════ */
+.dropzone {
+  display: flex; flex-direction: column; align-items: center; gap: var(--st-2);
+  padding: var(--st-6) var(--st-4);
+  border: 2px dashed var(--st-300); border-radius: var(--st-r-lg);
+  background: var(--st-50); text-align: center; cursor: pointer;
+  transition: all 200ms ease;
+}
+.dropzone:hover { border-color: var(--st-brand); background: var(--st-brand-50); }
+.dropzone--over { border-color: var(--st-brand); background: var(--st-brand-50); }
+.dropzone .hint-cell { max-width: 34rem; }
+
+.thumbs { display: flex; flex-wrap: wrap; gap: var(--st-3); }
+.thumb {
+  position: relative; display: flex; flex-direction: column; gap: var(--st-2);
+  width: 132px; margin: 0; padding: var(--st-2);
+  border: 1px solid var(--st-200); border-radius: var(--st-r-md); background: var(--st-0);
+}
+.thumb--main { border-color: var(--st-brand); box-shadow: 0 0 0 1px var(--st-brand) inset; }
+.thumb img {
+  width: 100%; height: 120px; object-fit: cover;
+  border-radius: var(--st-r-sm); background-color: var(--st-50);
+}
+.thumb figcaption { display: flex; gap: var(--st-1); justify-content: space-between; }
+.thumb .hint-cell { font-size: 1rem; }
+
+.thumb__spinner {
+  position: absolute; inset: 0; border-radius: var(--st-r-md);
+  background: rgba(255, 255, 255, 0.55);
+}
+.thumb__spinner::after {
+  content: ''; position: absolute; inset-inline: var(--st-3); top: 50%;
+  height: 3px; border-radius: 2px;
+  background: linear-gradient(90deg, var(--st-brand), var(--st-accent));
+  animation: thumb-pulse 900ms ease-in-out infinite;
+}
+@keyframes thumb-pulse {
+  0%, 100% { opacity: 0.25; transform: translateY(-1px) scaleX(0.6); }
+  50%      { opacity: 1;    transform: translateY(-1px) scaleX(1); }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   ویترین: نوارِ اعلان، بنرِ اصلی و بنرهایِ میانی
+   ═══════════════════════════════════════════════════════════════════════════ */
+.annbar {
+  background: linear-gradient(90deg, var(--st-brand), var(--st-brand-600));
+  color: #fff;
+  font-size: var(--fs-xs, 0.78rem);
+  line-height: 1.9;
+}
+.annbar--accent { background: linear-gradient(90deg, #D97706, #a855f7); }
+.annbar--dark   { background: linear-gradient(90deg, #241239, #463254); }
+.annbar__inner {
+  display: flex; align-items: center; justify-content: center; gap: var(--st-3);
+  max-width: var(--w-page, 1280px); margin: 0 auto;
+  padding: var(--st-2) var(--st-4); min-height: 2.4rem; text-align: center;
+}
+.annbar__link { color: inherit; text-decoration: none; }
+.annbar__link:hover { text-decoration: underline; }
+.annbar__text { display: inline-flex; gap: var(--st-2); flex-wrap: wrap; justify-content: center; }
+.annbar__body { opacity: 0.9; }
+.annbar__dots { display: flex; gap: 6px; }
+.annbar__dot {
+  width: 6px; height: 6px; padding: 0; border: 0; border-radius: 50%;
+  background: rgba(255, 255, 255, 0.45); cursor: pointer;
+}
+.annbar__dot--on { background: #fff; }
+
+.promo { position: relative; margin: var(--st-4) 0; }
+.promo__viewport { overflow: hidden; border-radius: var(--st-r-lg); background: var(--st-100); }
+.promo__track { display: flex; transition: transform 520ms cubic-bezier(0.4, 0, 0.2, 1); }
+.promo__slide { position: relative; flex: 0 0 100%; }
+.promo__link { display: block; }
+.promo__img {
+  display: block; width: 100%; height: auto; aspect-ratio: 1600 / 520;
+  object-fit: cover; background-color: var(--st-100);
+}
+.promo__caption {
+  position: absolute; inset-inline-start: var(--st-5); bottom: var(--st-5);
+  padding: var(--st-2) var(--st-4); border-radius: var(--st-r-sm);
+  background: rgba(26, 22, 19, 0.75); color: #fff; font-size: var(--fs-sm);
+  backdrop-filter: blur(4px);
+}
+.promo__nav {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  width: 2.6rem; height: 2.6rem; border: 0; border-radius: 50%;
+  background: rgba(255, 255, 255, 0.95); color: var(--st-800);
+  font-size: 1.4rem; line-height: 1; cursor: pointer;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+  transition: all 180ms ease;
+}
+.promo__nav:hover { background: #fff; box-shadow: 0 4px 20px rgba(0,0,0,0.15); transform: translateY(-50%) scale(1.08); }
+.promo__nav--prev { inset-inline-start: var(--st-3); }
+.promo__nav--next { inset-inline-end: var(--st-3); }
+.promo__dots {
+  position: absolute; bottom: var(--st-3); inset-inline: 0;
+  display: flex; gap: 6px; justify-content: center;
+}
+.promo__dot {
+  width: 8px; height: 8px; padding: 0; border: 0; border-radius: 50%;
+  background: rgba(255, 255, 255, 0.55); cursor: pointer;
+}
+.promo__dot--on { background: #fff; }
+
+.midbanners {
+  display: grid; gap: var(--st-3); margin: var(--st-5) 0;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+.midbanner { position: relative; overflow: hidden; border-radius: var(--st-r-lg); background: var(--st-100); }
+.midbanner__link { display: block; }
+.midbanner__img {
+  display: block; width: 100%; height: auto; aspect-ratio: 800 / 260;
+  object-fit: cover; background-color: var(--st-100);
+  transition: transform 400ms ease;
+}
+.midbanner:hover .midbanner__img { transform: scale(1.03); }
+.midbanner__caption {
+  position: absolute; inset-inline-start: var(--st-4); bottom: var(--st-4);
+  padding: var(--st-1) var(--st-3); border-radius: var(--st-r-sm);
+  background: rgba(26, 22, 19, 0.75); color: #fff; font-size: var(--fs-xs, 0.78rem);
+  backdrop-filter: blur(4px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .promo__track { transition: none; }
+}
+
+/* ── نظر و امتیازِ خریداران ── */
+.rv { margin: var(--st-6, 2rem) 0; }
+.rv__head { margin-bottom: var(--st-3, 1rem); }
+.rv__title { font-size: 1.35rem; font-weight: 800; color: var(--st-900, #111); margin: 0; }
+.rv__count { font-size: 1rem; font-weight: 600; color: var(--st-500, #777); }
+.rv__summary {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--st-5, 1.5rem);
+  align-items: center;
+  padding: var(--st-4, 1.25rem);
+  border: 1px solid var(--st-200);
+  border-radius: var(--st-r-md);
+  background: var(--st-0);
+  box-shadow: var(--st-shadow-1);
+}
+@media (max-width: 640px) {
+  .rv__summary { grid-template-columns: 1fr; }
+}
+.rv__score { text-align: center; min-width: 8rem; }
+.rv__score-num { font-size: 2.5rem; font-weight: 800; line-height: 1; color: var(--st-900); }
+.rv__score-sub { font-size: 1.15rem; color: var(--st-500); margin-top: .35rem; }
+.rv__bars { display: flex; flex-direction: column; gap: .4rem; }
+.rv__bar { display: grid; grid-template-columns: 2rem 1fr 2.5rem; align-items: center; gap: .5rem; }
+.rv__bar-label { font-size: 1.15rem; color: var(--st-600); }
+.rv__bar-track { height: .55rem; background: var(--st-200); border-radius: 99px; overflow: hidden; }
+.rv__bar-fill { display: block; height: 100%; background: linear-gradient(90deg, var(--st-brand), var(--st-accent)); border-radius: 99px; }
+.rv__bar-count { font-size: 1.15rem; color: var(--st-500); }
+
+.stars { color: var(--st-300); letter-spacing: 2px; line-height: 1; }
+.stars__on { color: var(--st-accent); }
+.stars__half { color: var(--st-accent); opacity: .55; }
+.stars__off { color: var(--st-300); }
+
+.rv__note {
+  font-size: 1.25rem; color: var(--st-500);
+  background: var(--st-50); border: 1px dashed var(--st-300);
+  border-radius: var(--st-r-sm); padding: var(--st-3);
+}
+.rv__form {
+  margin: var(--st-4, 1.25rem) 0;
+  padding: var(--st-4, 1.25rem);
+  border: 1px solid var(--st-200);
+  border-radius: var(--st-r-md);
+  display: flex; flex-direction: column; gap: .75rem;
+  background: var(--st-0);
+}
+.rv__rate { display: flex; align-items: center; gap: .25rem; flex-direction: row-reverse; justify-content: flex-end; }
+.rv__rate-label { font-size: 1.25rem; color: var(--st-600); margin-inline-end: .5rem; }
+.rv__star {
+  background: none; border: 0; cursor: pointer; font-size: 1.6rem; line-height: 1;
+  color: var(--st-300); padding: 0 .1rem; transition: color 150ms ease;
+}
+.rv__star--on { color: var(--st-accent); }
+.rv__sort { display: flex; align-items: center; gap: .5rem; flex-wrap: wrap; margin: var(--st-4, 1.25rem) 0; }
+.rv__sort-label { font-size: 1.2rem; color: var(--st-500); }
+.rv__sort-btn {
+  background: none; border: 1px solid var(--st-200); border-radius: var(--st-r-pill);
+  padding: .3rem .8rem; font-size: 1.2rem; color: var(--st-600); cursor: pointer;
+  transition: all 180ms ease;
+}
+.rv__sort-btn:hover { border-color: var(--st-brand); color: var(--st-brand); }
+.rv__sort-btn--on {
+  background: linear-gradient(135deg, var(--st-brand), var(--st-brand-600));
+  border-color: var(--st-brand); color: #fff;
+}
+.rv__list { display: flex; flex-direction: column; gap: var(--st-3, 1rem); }
+.rv__list--busy { opacity: .6; }
+.rv__item {
+  border: 1px solid var(--st-200);
+  border-radius: var(--st-r-md);
+  padding: var(--st-4, 1.25rem);
+  background: var(--st-0);
+}
+.rv__item-head { display: flex; align-items: center; gap: .6rem; flex-wrap: wrap; margin-bottom: .4rem; }
+.rv__author { font-weight: 700; color: var(--st-900); }
+.rv__badge {
+  font-size: 1.05rem; color: var(--st-ok);
+  background: var(--st-ok-soft); border: 1px solid #BBF7D0;
+  border-radius: var(--st-r-pill); padding: .1rem .55rem;
+}
+.rv__date { font-size: 1.1rem; color: var(--st-400); margin-inline-start: auto; }
+.rv__item-rate { display: flex; align-items: center; gap: .6rem; }
+.rv__status { font-size: 1.05rem; color: var(--st-400); }
+.rv__body { margin: .5rem 0 .75rem; line-height: 1.9; color: var(--st-800); white-space: pre-line; }
+.rv__reply {
+  background: var(--st-brand-50);
+  border-inline-start: 3px solid var(--st-brand);
+  border-radius: var(--st-r-sm); padding: .7rem .9rem; margin-bottom: .75rem;
+}
+.rv__reply-label { font-size: 1.1rem; font-weight: 700; color: var(--st-700); display: block; margin-bottom: .25rem; }
+.rv__reply-body { margin: 0; line-height: 1.9; color: var(--st-700); }
+.rv__vote { display: flex; align-items: center; gap: .5rem; flex-wrap: wrap; }
+.rv__vote-q { font-size: 1.2rem; color: var(--st-500); }
+.rv__thumb {
+  background: none; border: 1px solid var(--st-200); border-radius: var(--st-r-pill);
+  padding: .25rem .7rem; cursor: pointer; font-size: 1.15rem; color: var(--st-600);
+  transition: all 180ms ease;
+}
+.rv__thumb:hover { border-color: var(--st-brand); color: var(--st-brand); }
+.rv__thumb--on {
+  background: linear-gradient(135deg, var(--st-brand), var(--st-brand-600));
+  border-color: var(--st-brand); color: #fff;
+}
+
+/* ── درختِ دسته‌بندی ── */
+.crumbs__item { color: var(--st-600); text-decoration: none; }
+.crumbs__item:hover { color: var(--st-brand); text-decoration: underline; }
+.crumbs__sep::before { content: '‹'; color: var(--st-400); }
+.crumbs__current { color: var(--st-800); font-weight: 600; }
+
+.cathead { margin: var(--st-3, 1rem) 0 var(--st-5, 1.5rem); }
+.cathead__title { font-size: 1.9rem; font-weight: 800; color: var(--st-900); margin: 0 0 .3rem; }
+.cathead__sub { font-size: 1.25rem; color: var(--st-500); margin: 0; }
+.cathead__desc { font-size: 1.3rem; line-height: 1.9; color: var(--st-700); margin-top: .6rem; max-width: 60ch; }
+
+.subcats { display: flex; flex-wrap: wrap; gap: .6rem; margin-bottom: var(--st-5, 1.5rem); }
+.subcat {
+  display: inline-flex; align-items: center; gap: .5rem;
+  border: 2px solid var(--st-200); border-radius: var(--st-r-pill);
+  padding: .45rem 1rem; text-decoration: none;
+  background: var(--st-0); color: var(--st-800);
+  font-size: 1.2rem; transition: all 180ms ease;
+}
+.subcat:hover {
+  border-color: var(--st-brand);
+  color: var(--st-brand);
+  background: var(--st-brand-50);
+}
+.subcat__name { font-weight: 600; }
+.subcat__count { font-size: 1.05rem; color: var(--st-500); }
+
+.mega__group { margin-bottom: .35rem; }
+.mega__link--root { font-weight: 700; color: var(--st-900); }
+.mega__sub {
+  display: flex; flex-direction: column;
+  margin: .15rem 0 .5rem; padding-inline-start: .8rem;
+  border-inline-start: 2px solid var(--st-brand-100);
+}
+.mega__link--sub { font-size: 1.2rem; color: var(--st-600); padding: .15rem 0; }
+.mega__link--all { font-size: 1.15rem; color: var(--st-brand); padding-top: .15rem; }
+.mega__count { font-size: 1.05rem; color: var(--st-400); }
+.mega__empty { font-size: 1.2rem; color: var(--st-400); }
+
+.ctree__row {
+  display: flex; align-items: center; gap: .5rem;
+  padding: .45rem .6rem; border-radius: var(--st-r-sm);
+}
+.ctree__row:hover { background: var(--st-50); }
+.ctree__name { font-weight: 600; }
+.ctree__slug { font-size: 1.1rem; color: var(--st-400); direction: ltr; }
+.ctree__counts { font-size: 1.1rem; color: var(--st-500); margin-inline-start: auto; }
+.ctree__off { opacity: .5; }
+
+/* «خبرم کن وقتی موجود شد» */
+.stock-alert {
+  margin-top: var(--st-3, 1rem);
+  padding: var(--st-3, 1rem);
+  border: 2px dashed var(--st-300);
+  border-radius: var(--st-r-md);
+  background: var(--st-50);
+}
+.stock-alert__lead { margin: 0 0 .5rem; font-size: 1.2rem; color: var(--st-600); }
+.stock-alert__row {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: var(--st-3, 1rem); flex-wrap: wrap;
+  padding: .35rem 0;
+  border-top: 1px solid var(--st-200);
+}
+.stock-alert__row:first-of-type { border-top: 0; }
+.stock-alert__label { font-weight: 600; color: var(--st-800); }
+.stock-alert__form { display: flex; flex-direction: column; gap: .5rem; max-width: 24rem; }
+.stock-alert__ok {
+  margin: 0; font-size: 1.2rem; color: var(--st-ok);
+  background: var(--st-ok-soft); border: 1px solid #BBF7D0;
+  border-radius: var(--st-r-sm); padding: .4rem .7rem;
+}
+
+/* ردیفِ پیگیریِ سفارش */
+.track { display: flex; gap: .4rem; margin: var(--st-3, 1rem) 0; flex-wrap: wrap; }
+.track__step {
+  flex: 1 1 8rem; padding: .5rem .6rem; border-radius: var(--st-r-sm);
+  border: 1px solid var(--st-200); background: #fff;
+  font-size: 1.15rem; color: var(--st-500);
+}
+.track__step--done { border-color: #86EFAC; background: #F0FDF4; color: #166534; }
+.track__step--now {
+  border-color: var(--st-brand); background: var(--st-brand-50);
+  color: var(--st-900); font-weight: 700;
+}
+
+/* ── سواچِ رنگ ── */
+.swatches { margin-bottom: var(--st-4, 1.25rem); }
+.swatches__lead {
+  display: flex; align-items: center; gap: .4rem;
+  font-size: 1.3rem; font-weight: 700; margin-bottom: var(--st-2, .75rem);
+}
+.swatches__current { font-weight: 600; color: var(--st-600); }
+.swatches__row { display: flex; flex-wrap: wrap; gap: var(--st-3, 1rem); }
+.swatch {
+  display: flex; flex-direction: column; align-items: center; gap: .3rem;
+  background: none; border: 0; padding: 0; cursor: pointer;
+  width: 5.2rem;
+}
+.swatch__chip {
+  position: relative;
+  width: 3.4rem; height: 3.4rem; border-radius: 50%;
+  display: grid; place-items: center; overflow: hidden;
+  border: 1px solid rgba(0, 0, 0, .15);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, .12);
+  transition: box-shadow .15s ease, transform .15s ease;
+}
+.swatch__img { width: 100%; height: 100%; object-fit: cover; background-size: cover; }
+.swatch__name { font-size: 1.1rem; color: var(--st-600); line-height: 1.4; text-align: center; }
+.swatch--on .swatch__chip {
+  box-shadow: 0 0 0 2px var(--st-0), 0 0 0 4px var(--st-brand);
+}
+.swatch--on .swatch__name { color: var(--st-900); font-weight: 700; }
+.swatch--out { opacity: .75; }
+.swatch--out .swatch__chip { filter: grayscale(.35); }
+.swatch__strike {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top left,
+    transparent calc(50% - 1px), var(--st-700) calc(50% - 1px),
+    var(--st-700) calc(50% + 1px), transparent calc(50% + 1px));
+}
+.swatch--out .swatch__name::after { content: ' (ناموجود)'; color: var(--st-err); font-size: 1rem; }
+
+.dots { display: inline-flex; align-items: center; gap: .25rem; }
+.dots__dot {
+  width: 1rem; height: 1rem; border-radius: 50%;
+  border: 1px solid rgba(0, 0, 0, .18);
+  display: inline-block;
+}
+.dots__more { font-size: 1.05rem; color: var(--st-400); margin-inline-start: .15rem; }
+
+/* ── کوپن و کدِ تخفیف ── */
+.coupon { display: grid; gap: .45rem; }
+.coupon__row { display: flex; gap: .5rem; align-items: stretch; }
+.coupon__input {
+  flex: 1 1 auto; min-width: 0;
+  padding: .6rem .75rem;
+  border: 2px dashed var(--st-300);
+  border-radius: var(--st-r-sm);
+  background: var(--st-50);
+  font: inherit; font-size: .95rem; letter-spacing: .04em;
+}
+.coupon__input:focus-visible {
+  outline: none; border-style: solid;
+  border-color: var(--st-brand);
+  background: #fff;
+}
+.coupon__btn {
+  flex: 0 0 auto;
+  padding: .6rem 1.1rem;
+  border: none;
+  border-radius: var(--st-r-sm);
+  background: linear-gradient(135deg, var(--st-brand), var(--st-brand-600));
+  color: #fff; font: inherit; font-size: .9rem; font-weight: 600;
+  cursor: pointer; box-shadow: var(--st-shadow-brand);
+}
+.coupon__btn:disabled { opacity: .6; cursor: default; box-shadow: none; }
+.coupon__clear {
+  flex: 0 0 auto; padding: .6rem .7rem;
+  border: 1px solid var(--st-200);
+  border-radius: var(--st-r-sm);
+  background: #fff; color: var(--st-500);
+  font: inherit; font-size: .85rem; cursor: pointer;
+}
+.coupon__msg { margin: 0; font-size: .85rem; line-height: 1.7; }
+.coupon__msg--ok { color: var(--st-ok); }
+.coupon__msg--err { color: var(--st-err); }
+.coupon__hint { margin: 0; font-size: .78rem; color: var(--st-400); }
+
+.subcard {
+  margin-top: var(--st-4, 1rem);
+  padding: var(--st-4, 1rem);
+  border: 1px solid var(--st-200);
+  border-radius: var(--st-r-md);
+  background: var(--st-50);
+}
+.subcard__title { margin: 0 0 var(--st-3, .75rem); font-size: 1rem; }
+
+/* ── برچسب‌هایِ کارت (قدیمی حذف شد — تعریفِ بالا کافی است) ── */
+.card-p__badges {
+  position: absolute; top: 8px; right: 8px;
+  display: flex; flex-direction: column; gap: 4px; align-items: flex-end;
+}
+.card-p__badge--new {
+  background: linear-gradient(135deg, var(--st-brand), var(--st-accent));
+  font-weight: 600;
+}
+.card-p__dots { display: flex; gap: 4px; align-items: center; flex-wrap: wrap; }
+.card-p__dot {
+  width: 1.1rem; height: 1.1rem; border-radius: 50%;
+  border: 1px solid rgba(0, 0, 0, .18);
+  display: inline-block;
+}
+.card-p__dot-more { font-size: 1rem; color: var(--st-400); }
+
+/* ── تب‌هایِ برگه‌یِ کالا ── */
+.tabs { margin-top: var(--st-5, 1.5rem); }
+.tabs__list {
+  display: flex; gap: .25rem;
+  border-bottom: 1px solid var(--st-200);
+  overflow-x: auto; scrollbar-width: none;
+}
+.tabs__list::-webkit-scrollbar { display: none; }
+.tabs__tab {
+  padding: .7rem 1rem;
+  border: none; background: none; cursor: pointer;
+  font: inherit; font-size: 1.35rem; font-weight: 600;
+  color: var(--st-500);
+  border-bottom: 2px solid transparent;
+  white-space: nowrap;
+  transition: all 180ms ease;
+}
+.tabs__tab[aria-selected='true'] {
+  color: var(--st-brand);
+  border-bottom-color: var(--st-brand);
+}
+.tabs__tab:hover { color: var(--st-brand); }
+.tabs__panel { padding-top: var(--st-4, 1rem); }
+
+/* ── نوارِ مراحلِ خرید ── */
+.steps { display: flex; align-items: center; gap: .5rem; margin-bottom: var(--st-4, 1rem); flex-wrap: wrap; }
+.steps__item { display: flex; align-items: center; gap: .4rem; font-size: 1.2rem; color: var(--st-400); }
+.steps__item--done { color: var(--st-ok); }
+.steps__item--now { color: var(--st-900); font-weight: 700; }
+.steps__num {
+  width: 2rem; height: 2rem; border-radius: 50%;
+  display: grid; place-items: center;
+  border: 1px solid currentColor; font-size: 1.1rem;
+}
+.steps__item--done .steps__num { background: var(--st-ok-soft); }
+.steps__item--now .steps__num {
+  background: linear-gradient(135deg, var(--st-brand), var(--st-brand-600));
+  color: #fff; border-color: var(--st-brand);
+}
+.steps__line { width: 2.5rem; height: 1px; background: var(--st-200); }
+
+/* ── فیلترِ رنگ در فهرست ── */
+.chips { display: flex; gap: .5rem; flex-wrap: wrap; align-items: center; }
+.chip-f {
+  display: inline-flex; align-items: center; gap: .35rem;
+  padding: .4rem .8rem;
+  border: 2px solid var(--st-200);
+  border-radius: var(--st-r-pill); background: #fff;
+  font: inherit; font-size: 1.2rem; cursor: pointer;
+  color: var(--st-700);
+  transition: all 180ms ease;
+}
+.chip-f[aria-pressed='true'] {
+  border-color: var(--st-brand);
+  background: var(--st-brand-50); color: var(--st-900); font-weight: 600;
+}
+.chip-f__dot { width: 1.2rem; height: 1.2rem; border-radius: 50%; border: 1px solid rgba(0,0,0,.18); }
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   فرمِ لاگین فروشگاه (OTP)
+   ═══════════════════════════════════════════════════════════════════════════ */
+.store-login {
+  display: grid; place-items: center; min-height: 60vh;
+  padding: var(--st-6) var(--st-4);
+}
+.store-login__card {
+  width: 100%; max-width: 420px;
+  background: var(--st-0);
+  border: 1px solid var(--st-200);
+  border-radius: var(--st-r-lg);
+  padding: var(--st-7);
+  box-shadow: var(--st-shadow-2);
+}
+.store-login__icon {
+  width: 56px; height: 56px;
+  border-radius: var(--st-r-sm);
+  background: linear-gradient(135deg, var(--st-brand), var(--st-accent));
+  color: #fff;
+  display: grid; place-items: center;
+  font-size: 2rem;
+  margin-bottom: var(--st-4);
+  box-shadow: var(--st-shadow-brand);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   حساب کاربری — کارت‌ها
+   ═══════════════════════════════════════════════════════════════════════════ */
+.account-card {
+  background: var(--st-0);
+  border: 1px solid var(--st-200);
+  border-radius: var(--st-r-md);
+  padding: var(--st-5);
+  transition: all 200ms ease;
+}
+.account-card:hover {
+  box-shadow: 0 6px 24px rgba(217, 45, 80, 0.1);
+  border-color: var(--st-brand-100);
+  transform: translateY(-2px);
+}
+/* =====================================================================
+   ابزارهای فروشگاه — جایگزین inline styleها
+   ===================================================================== */
+
+/* فلکس */
+.sf-flex { display: flex; }
+.sf-flex-col { display: flex; flex-direction: column; }
+.sf-flex-wrap { flex-wrap: wrap; }
+.sf-items-center { align-items: center; }
+.sf-items-start { align-items: flex-start; }
+.sf-justify-between { justify-content: space-between; }
+.sf-justify-end { justify-content: flex-end; }
+.sf-flex-1 { flex: 1 1 0; min-width: 0; }
+.sf-flex-0 { flex: 0 0 auto; }
+
+/* فاصله */
+.sf-gap-1 { gap: var(--st-2); }
+.sf-gap-2 { gap: var(--st-3); }
+.sf-gap-3 { gap: var(--st-4); }
+.sf-gap-4 { gap: var(--st-5); }
+.sf-gap-6 { gap: var(--st-6); }
+
+.sf-mb-0 { margin-bottom: 0; }
+.sf-mb-1 { margin-bottom: var(--st-2); }
+.sf-mb-2 { margin-bottom: var(--st-3); }
+.sf-mb-3 { margin-bottom: var(--st-4); }
+.sf-mb-4 { margin-bottom: var(--st-5); }
+.sf-mt-0 { margin-top: 0; }
+.sf-mt-1 { margin-top: var(--st-2); }
+.sf-mt-2 { margin-top: var(--st-3); }
+.sf-mt-3 { margin-top: var(--st-4); }
+
+.sf-p-0 { padding: 0; }
+.sf-p-3 { padding: var(--st-4); }
+.sf-p-4 { padding: var(--st-5); }
+.sf-py-1 { padding-top: var(--st-2); padding-bottom: var(--st-2); }
+.sf-pt-1 { padding-top: var(--st-2); }
+.sf-pb-1 { padding-bottom: var(--st-2); }
+
+/* متن */
+.sf-text-xs { font-size: 1rem; }
+.sf-text-sm { font-size: 1.15rem; }
+.sf-text-base { font-size: 1.3rem; }
+.sf-text-md { font-size: 1.4rem; }
+.sf-text-lg { font-size: 1.6rem; }
+.sf-text-xl { font-size: 2rem; }
+.sf-text-2xl { font-size: 2.5rem; }
+.sf-font-bold { font-weight: 700; }
+.sf-font-semibold { font-weight: 600; }
+
+.sf-color-400 { color: var(--st-400); }
+.sf-color-500 { color: var(--st-500); }
+.sf-color-600 { color: var(--st-600); }
+.sf-color-700 { color: var(--st-700); }
+.sf-color-900 { color: var(--st-900); }
+.sf-color-brand { color: var(--st-brand); }
+.sf-color-ok { color: var(--ok-700, #15803d); }
+.sf-color-danger { color: var(--danger, #b91c1c); }
+
+.sf-line-height-2 { line-height: 2.1; }
+.sf-line-height-1-6 { line-height: 1.6; }
+.sf-whitespace-nowrap { white-space: nowrap; }
+.sf-text-center { text-align: center; }
+
+/* گرید */
+.sf-grid { display: grid; }
+.sf-grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); }
+.sf-grid-auto { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+
+/* عرض */
+.sf-w-full { width: 100%; }
+
+/* حاشیه */
+.sf-border-top { border-top: 1px solid var(--st-200); }
+.sf-border-bottom { border-bottom: 1px solid var(--st-200); }
+
+/* کارت */
+.sf-card-padded { padding: var(--st-5); }
+.sf-card-grid { padding: var(--st-5); display: grid; gap: var(--st-4); }
+
+/* فیلد */
+.sf-field { display: grid; gap: var(--st-2); }
+.sf-field__label { font-size: 1.3rem; }
+.sf-field__input {
+  padding: .75rem 1rem; border: 1px solid var(--st-200);
+  border-radius: var(--st-r-sm, .5rem); font: inherit; font-size: 1.3rem;
+}
+.sf-field__input:focus { outline: none; border-color: var(--st-brand); }
+
+/* فیلتر */
+.sf-filter { display: flex; flex-wrap: wrap; gap: var(--st-2); margin-bottom: var(--st-4); }
+
+/* تب محصول */
+.sf-pdp-info { display: grid; gap: var(--st-3); }
+.sf-pdp-title { font-size: 2rem; line-height: 1.6; margin: 0 0 var(--st-3); color: var(--st-900); }
+.sf-pdp-meta { display: flex; flex-wrap: wrap; gap: var(--st-2); }
+.sf-pdp-attrs { display: flex; flex-direction: column; gap: var(--st-2); margin-top: var(--st-4); }
+.sf-pdp-attr { display: flex; align-items: center; gap: var(--st-2); font-size: 1.25rem; color: var(--st-600); }
+.sf-pdp-prices { margin-top: var(--st-4); border-top: 1px solid var(--st-200); padding-top: var(--st-3); }
+.sf-pdp-prices__title { font-size: 1.25rem; font-weight: 700; color: var(--st-600); margin: 0 0 var(--st-2); }
+.sf-pdp-prices__list { display: flex; gap: var(--st-1); flex-wrap: wrap; }
+.sf-pdp-prices__item { font-size: 1.15rem; color: var(--st-500); white-space: nowrap; }
+.sf-pdp-prices__note { font-size: 1.15rem; color: var(--st-400); margin: var(--st-1) 0 0; }
+.sf-pdp-desc { font-size: 1.4rem; line-height: 2.1; color: var(--st-700); margin: 0; }
+.sf-pdp-sku { font-size: 1.2rem; color: var(--st-500); margin-bottom: var(--st-4); }
+.sf-pdp-swatch-btn { margin-top: var(--st-2); width: 100%; display: inline-flex; }
+
+/* چک‌اوت */
+.sf-checkout-label { font-size: 1.3rem; }
+.sf-checkout-hint { display: block; font-size: 1rem; color: var(--st-400); }
+.sf-checkout-error { margin: 0; color: var(--danger, #b91c1c); font-size: 1.3rem; }
+.sf-checkout-note { margin: 0; font-size: 1rem; color: var(--st-400); }
+
+/* نمودار قیمت */
+.sf-price-track { display: flex; gap: var(--st-2); flex-wrap: wrap; }
+
+@media (max-width: 640px) {
+  .sf-grid-2, .sf-grid-auto { grid-template-columns: 1fr; }
+}
+
+/* =====================================================================
+   ابزارهای فروشگاه — دور دوم (جایگزین remaining inline styles)
+   ===================================================================== */
+
+/* تعداد (Quantity stepper) */
+.qty-stepper {
+  display: flex; align-items: center;
+  border: 1px solid var(--st-300); border-radius: var(--st-r-sm); overflow: hidden;
+}
+.qty-btn {
+  width: 40px; height: 40px; border: none; background: var(--st-50);
+  cursor: pointer; font-size: 1.8rem; color: var(--st-700);
+  display: flex; align-items: center; justify-content: center;
+}
+.qty-btn:hover { background: var(--st-100); }
+.qty-num {
+  width: 44px; text-align: center; font-size: 1.5rem; font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+/* دکمه‌ی ریست */
+.sf-btn-reset {
+  background: none; border: none; cursor: pointer; font-family: inherit;
+}
+
+/* لیست محتویات */
+.sf-contents { display: contents; list-style: none; }
+
+/* خطای رنگ */
+.sf-color-err { color: var(--st-err); }
+
+/* حداکثر عرض */
+.sf-max-w-720 { max-width: 720px; }
+.sf-max-w-640 { max-width: 640px; }
+.sf-text-narrow { max-width: 52ch; margin: 0 auto var(--st-4); }
+
+/* padding‌های بزرگ */
+.sf-py-hero { padding: var(--st-8) 0 var(--st-10); }
+.sf-py-section { padding: var(--st-5) 0 var(--st-9); }
+
+/* inline-block */
+.sf-inline-block { display: inline-block; }
+.sf-inline-block-me-2 { display: inline-block; margin-inline-end: var(--st-3); }
+
+/* متن وسط + حداکثر عرض */
+.sf-centered-page { max-width: 640px; margin-inline: auto; text-align: center; }
+
+/* کارت با حاشیه */
+.sf-card-bordered {
+  border: 1px solid var(--st-200); border-radius: var(--st-r-md); background: var(--st-50);
+}
+.sf-card-dashed {
+  border: 1px dashed var(--st-300); border-radius: var(--st-r-md); background: var(--st-50);
+}
+
+/* دکمه‌ی فلکس */
+.sf-btn-flex { flex: 1; min-width: 140px; }
+.sf-btn-flex-center {
+  flex: 1; min-width: 140px; text-align: center;
+  display: inline-flex; justify-content: center;
+}
+
+/* گرید سبد خرید و جستجو */
+.sf-cart-grid {
+  display: grid; grid-template-columns: minmax(0, 1fr) 360px;
+  gap: var(--st-5); align-items: start;
+}
+.sf-search-grid {
+  display: grid; grid-template-columns: minmax(0, 1fr) 260px;
+  gap: var(--st-5); align-items: start;
+}
+.sf-compare-grid {
+  display: grid; grid-template-columns: minmax(0, 1fr) 260px;
+  gap: var(--st-5); align-items: start;
+}
+
+/* متن‌های خاص */
+.sf-text-17 { font-size: 1.7rem; }
+.sf-text-2rem { font-size: 2rem; }
+.sf-text-2xl-bold { font-size: 2.2rem; font-weight: 800; margin: 0 0 var(--st-2); color: var(--st-900); }
+
+/* سرصفحه‌ی نوار */
+.sf-hdr-row {
+  display: flex; align-items: center; gap: var(--st-5); width: 100%;
+}
+.sf-hdr-brand { font-weight: 700; font-size: var(--fs-lg); color: var(--c-brand); }
+.sf-hdr-nav {
+  display: flex; gap: var(--st-4); font-size: var(--fs-sm); color: var(--c-text-2);
+}
+.sf-hdr-end { margin-inline-start: auto; }
+
+/* فیلتر سرچ */
+.sf-filter-open {
+  background: none; border: none; cursor: pointer; font-family: inherit;
+  padding: 0; display: flex; align-items: center; gap: var(--st-2);
+  font-size: 1.3rem; color: var(--st-700);
+}
+.sf-filter-panel { border-bottom: 'none'; padding-top: 0; }
+
+/* cart summary row */
+.sf-cart-summary {
+  display: flex; justify-content: space-between;
+  font-size: 1.3rem; color: var(--st-600);
+}
+
+/* badge نوار */
+.sf-badge-pill {
+  padding: 6px var(--st-4); border-radius: var(--st-r-pill);
+}
+
+/* deal badge */
+.sf-tag-deal { background: var(--st-deal-soft); color: var(--st-deal); }
+
+/* header inline */
+.sf-hdr-inner { display: flex; align-items: center; gap: var(--st-4); height: 100%; }
+
+/* شاخص قیمت */
+.sf-price-note {
+  font-size: 1.2rem; color: var(--st-400); margin-top: var(--st-4);
+}
+
+/* دکمه‌ی کوچک */
+.sf-btn-sm { height: 34px; font-size: 1.2rem; }
+.sf-btn-md { height: 38px; font-size: 1.25rem; }
+
+@media (max-width: 900px) {
+  .sf-cart-grid, .sf-search-grid, .sf-compare-grid {
+    grid-template-columns: 1fr;
+  }
+}
+.mega__panel-rows { gridTemplateRows: repeat(7, auto); }
+
+/* =====================================================================
+   ابزارهای فروشگاه — دور سوم (remaining complex patterns)
+   ===================================================================== */
+
+/* فیلتر پنل */
+.sf-filter-card {
+  border: 1px solid var(--st-200); border-radius: var(--st-r-md);
+  padding: var(--st-4); background: var(--st-0);
+}
+
+/* فرم ورودی QA */
+.sf-input-reset {
+  width: 100%; padding: 8px 12px; margin-bottom: 8px;
+  border-radius: 6px; border: 1px solid #ddd; font-family: inherit;
+}
+.sf-textarea-reset {
+  width: 100%; padding: 8px 12px; margin-bottom: 8px;
+  border-radius: 6px; border: 1px solid #ddd; resize: vertical; font-family: inherit;
+}
+
+/* سرصفحه sticky */
+.sf-hdr-sticky {
+  position: sticky; top: 0; z-index: 20;
+  background: var(--c-surface); border-bottom: 1px solid var(--c-border);
+  height: var(--h-header); display: flex; align-items: center;
+}
+
+/* گرید نتایج جستجو */
+.sf-results-grid {
+  display: grid; grid-template-columns: minmax(0,1fr) 260px;
+  gap: var(--st-5); align-items: start;
+}
+
+/* لیبل چک‌اوت */
+.sf-checkout-label-card {
+  display: flex; align-items: center; gap: var(--s-3);
+  padding: var(--s-3) var(--s-4); cursor: pointer;
+}
+
+/* لیست سبد خرید */
+.sf-cart-item-grid {
+  display: grid; grid-template-columns: 80px 1fr; gap: var(--st-3);
+  padding: var(--st-3); border-bottom: 1px solid var(--st-100);
+}
+.sf-cart-item-img {
+  width: 80px; height: 80px; object-fit: cover; border-radius: var(--st-r-sm);
+}
+.sf-cart-item-info { display: grid; gap: var(--st-1); }
+.sf-cart-item-title { font-weight: 500; font-size: 1.4rem; }
+.sf-cart-item-meta { font-size: 1.2rem; color: var(--st-500); margin-top: 4px; }
+.sf-cart-item-price { font-weight: 700; font-size: 1.5rem; color: var(--st-900); }
+
+/* سبد خرید sidebar */
+.sf-cart-sidebar {
+  border: 1px solid var(--st-200); border-radius: var(--st-r-md);
+  padding: var(--st-4); background: var(--st-50);
+  display: grid; gap: var(--st-3); align-self: start;
+}
+.sf-cart-total-row {
+  display: flex; justify-content: space-between;
+  font-size: 1.3rem; color: var(--st-600); padding: var(--st-2) 0;
+}
+.sf-cart-total-final {
+  display: flex; justify-content: space-between;
+  font-size: 1.5rem; font-weight: 700; color: var(--st-900);
+  border-top: 2px solid var(--st-200); padding-top: var(--st-3);
+}
+
+/* پیشنهادات جستجو */
+.sf-suggestions-card {
+  border: 1px solid var(--st-200); border-radius: var(--st-r-md);
+  padding: var(--st-3); background: var(--st-0);
+  margin-bottom: var(--st-4);
+}
+
+@media (max-width: 900px) {
+  .sf-results-grid, .sf-cart-item-grid { grid-template-columns: 1fr; }
+}
