@@ -1,1 +1,0 @@
-window.__setScreens=[...document.querySelectorAll('.screen')];
